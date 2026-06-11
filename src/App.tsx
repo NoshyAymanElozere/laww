@@ -1,10 +1,10 @@
 import { useState, useEffect, MouseEvent, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
+import {
   Briefcase, Building2, TrendingUp, Scale, Shield, Zap,
   ArrowRight, ArrowLeft, Mail, Phone, Clock,
-  Award, Globe, Menu, X, MapPin, 
-  ChevronRight, ChevronLeft, FileText, BookOpen, 
+  Award, Globe, Menu, X, MapPin,
+  ChevronRight, ChevronLeft, FileText, BookOpen,
   ShieldCheck, Send, Sparkles, Search, Handshake, Users, Hand
 } from 'lucide-react';
 import AOS from 'aos';
@@ -216,10 +216,9 @@ export default function App() {
   const d = ELITE_MAALI_DATA;
 
   return (
-    <div 
-      className={`min-h-screen font-sans bg-[#095054] text-[#f3f4f6] antialiased overflow-hidden selection:bg-[#D9B95B] selection:text-black ${
-        isAr ? 'rtl' : 'ltr'
-      }`}
+    <div
+      className={`min-h-screen font-sans bg-[#095054] text-[#f3f4f6] antialiased overflow-hidden selection:bg-[#D9B95B] selection:text-black ${isAr ? 'rtl' : 'ltr'
+        }`}
       style={{ direction: isAr ? 'rtl' : 'ltr' }}
       onMouseMove={handleMouseMove}
     >
@@ -229,10 +228,10 @@ export default function App() {
           <motion.div
             key="preloader"
             initial={{ opacity: 1 }}
-            exit={{ 
-              y: '-100%', 
+            exit={{
+              y: '-100%',
               opacity: 0,
-              transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
+              transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
             }}
             className="fixed inset-0 z-50 flex flex-col justify-between p-8 sm:p-12 bg-[#095054] text-white"
           >
@@ -244,7 +243,7 @@ export default function App() {
 
             {/* Center Content */}
             <div className="text-center space-y-6">
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8 }}
@@ -256,7 +255,7 @@ export default function App() {
               <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
                 {isAr ? d.company.fullNameAr : d.company.fullNameEn}
               </h1>
-              
+
               <div className="font-serif text-sm sm:text-lg text-[#D9B95B] italic max-w-md mx-auto">
                 {isAr ? d.company.taglineAr : d.company.taglineEn}
               </div>
@@ -273,7 +272,7 @@ export default function App() {
                 </span>
               </div>
               <div className="w-full h-[2px] bg-white/10 relative overflow-hidden rounded">
-                <div 
+                <div
                   className="h-full bg-[#D9B95B] transition-all duration-150 ease-out"
                   style={{ width: `${Math.min(loadingProgress, 100)}%` }}
                 />
@@ -283,7 +282,7 @@ export default function App() {
         )}
       </AnimatePresence>
       {/* Background Orbs & Spotlight glow */}
-      <div 
+      <div
         className="glow-orb glow-orb-gold w-[600px] h-[600px] transition-transform duration-300 pointer-events-none hidden md:block"
         style={{
           transform: `translate(${mousePos.x - 300}px, ${mousePos.y - 300}px)`,
@@ -292,7 +291,7 @@ export default function App() {
           position: 'fixed'
         }}
       />
-      
+
       {/* Fixed Ambient Glow Orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="glow-orb glow-orb-teal w-[800px] h-[800px] -top-96 -left-96 animate-drift" />
@@ -300,7 +299,7 @@ export default function App() {
       </div>
 
       {/* READING PROGRESS BAR */}
-      <div 
+      <div
         className="fixed top-0 left-0 h-[4px] bg-gradient-to-r from-[#D9B95B] to-[#f1cf72] z-50 transition-all duration-150 ease-out"
         style={{ width: `${scrollProgress}%` }}
       />
@@ -335,7 +334,7 @@ export default function App() {
               {isAr ? 'ENGLISH' : 'العربية'}
             </button>
 
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(prev => !prev)}
               className="lg:hidden p-2 text-gray-200 hover:text-white transition-colors"
             >
@@ -368,14 +367,14 @@ export default function App() {
       </AnimatePresence>
 
       {/* SECTION 1: HERO (Deep Green Background, asymmetrical layout, floating license) */}
-      <section 
-        id="hero" 
+      <section
+        id="hero"
         className="relative min-h-screen pt-44 pb-20 flex items-center justify-center overflow-hidden bg-[#095054]"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Hero text */}
           <div className="lg:col-span-7 z-10 space-y-8 text-right lg:text-inherit">
-            <div 
+            <div
               data-aos="fade-up"
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#D9B95B]/30 bg-[#D9B95B]/5 backdrop-blur-md"
             >
@@ -386,13 +385,13 @@ export default function App() {
             </div>
 
             <div className="space-y-4">
-              <h1 
+              <h1
                 data-aos="skew-up"
                 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.15]"
               >
                 {isAr ? d.company.fullNameAr : d.company.fullNameEn}
               </h1>
-              <p 
+              <p
                 data-aos="fade-up"
                 data-aos-delay="200"
                 className="text-lg sm:text-2xl text-[#D9B95B] font-light leading-relaxed font-sans"
@@ -402,7 +401,7 @@ export default function App() {
             </div>
 
             {/* Overlapping Glass License Panel */}
-            <div 
+            <div
               data-aos="blur-in"
               data-aos-delay="400"
               className="glass-panel-morphic p-6 rounded-xl relative max-w-xl shadow-2xl mt-8"
@@ -411,8 +410,8 @@ export default function App() {
                 {isAr ? 'الترخيص والاعتماد' : 'ACCREDITATION'}
               </div>
               <p className="text-sm text-gray-200 leading-relaxed font-sans font-light">
-                {isAr 
-                  ? 'مرخصة رسميًا لمزاولة مهنة المحاماة والاستشارات القانونية من قبل وزارة العدل في المملكة العربية السعودية.' 
+                {isAr
+                  ? 'مرخصة رسميًا لمزاولة مهنة المحاماة والاستشارات القانونية من قبل وزارة العدل في المملكة العربية السعودية.'
                   : d.company.license}
               </p>
               <div className="mt-4 flex items-center gap-3 text-[10px] font-mono text-[#D9B95B]">
@@ -422,17 +421,17 @@ export default function App() {
             </div>
 
             <div data-aos="fade-up" data-aos-delay="600" className="flex flex-wrap gap-4 pt-4">
-              <a 
-                href="#services" 
+              <a
+                href="#services"
                 className="btn-liquid px-8 py-4 bg-[#D9B95B] text-black font-semibold text-xs tracking-widest uppercase rounded shadow-lg hover:shadow-[#D9B95B]/20 transition-all duration-300"
               >
                 {isAr ? 'استكشاف قطاعات العمل' : 'Explore Sectors'}
               </a>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs tracking-widest uppercase rounded border border-white/10 hover:border-[#D9B95B]/40 transition-all duration-300"
               >
-                {isAr ? 'طلب تواصل سري' : 'Confidential Contact'}
+                {isAr ? 'أطلب استشارة ' : 'Confidential Contact'}
               </a>
             </div>
           </div>
@@ -446,16 +445,16 @@ export default function App() {
 
             <div className="relative w-full max-w-[420px] h-[500px]">
               {/* Slideshow Card */}
-              <div 
-                data-aos="skew-up" 
-                data-aos-delay="200" 
+              <div
+                data-aos="skew-up"
+                data-aos-delay="200"
                 className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#095054] z-10"
               >
                 <AnimatePresence mode="wait">
-                  <motion.img 
+                  <motion.img
                     key={heroSlideIndex}
-                    src={heroSlides[heroSlideIndex].img} 
-                    alt="Elite Al-Maali Slideshow" 
+                    src={heroSlides[heroSlideIndex].img}
+                    alt="Elite Al-Maali Slideshow"
                     initial={{ opacity: 0, scale: 1.05 }}
                     animate={{ opacity: 0.65, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
@@ -482,9 +481,8 @@ export default function App() {
                   <button
                     key={idx}
                     onClick={() => setHeroSlideIndex(idx)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                      heroSlideIndex === idx ? 'bg-[#D9B95B] w-6' : 'bg-white/30 hover:bg-white/50'
-                    }`}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${heroSlideIndex === idx ? 'bg-[#D9B95B] w-6' : 'bg-white/30 hover:bg-white/50'
+                      }`}
                   />
                 ))}
               </div>
@@ -504,8 +502,8 @@ export default function App() {
               </button>
 
               {/* Floating logo/icon descriptor */}
-              <div 
-                data-aos="zoom-in" 
+              <div
+                data-aos="zoom-in"
                 data-aos-delay="600"
                 className="absolute top-12 right-[-30px] glass-panel-morphic p-4 rounded-xl z-20 flex flex-col items-center gap-2 shadow-2xl border border-[#D9B95B]/20"
               >
@@ -517,7 +515,7 @@ export default function App() {
             </div>
           </div>
         </div>
-        
+
         {/* Scroll down indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center pointer-events-none select-none z-10 animate-bounce">
           <span className="text-[9px] font-mono tracking-widest text-[#D9B95B] uppercase block mb-1">
@@ -528,12 +526,12 @@ export default function App() {
       </section>
 
       {/* SECTION 2: ABOUT US (White Background, dark green text, Light Morphic Panels) */}
-      <section 
-        id="about" 
+      <section
+        id="about"
         className="relative py-24 sm:py-36 bg-white text-gray-900 overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-96 h-96 glow-orb glow-orb-teal opacity-5" />
-        
+
         {/* Giant decorative watermark */}
         <div className="absolute bottom-12 right-12 font-serif text-[180px] leading-none text-[#095054]/5 font-black select-none pointer-events-none uppercase">
           {isAr ? 'نخبة' : 'ABOUT'}
@@ -541,7 +539,7 @@ export default function App() {
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            
+
             {/* Left side: Main narrative text */}
             <div className="lg:col-span-6 space-y-8 text-right lg:text-inherit">
               <div>
@@ -563,7 +561,7 @@ export default function App() {
               </div>
 
               {/* Interactive blockquote */}
-              <div 
+              <div
                 data-aos="fade-right"
                 className="p-6 border-l-2 border-[#095054] bg-[#095054]/5 rounded-r-lg space-y-2 mt-8"
               >
@@ -571,8 +569,8 @@ export default function App() {
                   {isAr ? 'ميثاق الممارسة' : 'FIRM COVENANT'}
                 </span>
                 <p className="font-serif text-[#095054] text-base italic">
-                  {isAr 
-                    ? '«نعمل على أن نكون الشريك القانوني الموثوق لعملائنا، مع تركيزنا الدائم على مصالح العميل كأولوية مطلقة»' 
+                  {isAr
+                    ? '«نعمل على أن نكون الشريك القانوني الموثوق لعملائنا، مع تركيزنا الدائم على مصالح العميل كأولوية مطلقة»'
                     : '“Our knowledge extends to understanding the practical and commercial environment in which our clients operate, with our constant focus on the client’s interests as an absolute priority.”'}
                 </p>
               </div>
@@ -580,10 +578,10 @@ export default function App() {
 
             {/* Right side: Interlocking Vision & Message (Mission) panels */}
             <div className="lg:col-span-6 space-y-8 lg:mt-12">
-              
+
               {/* Vision Card */}
-              <div 
-                data-aos="skew-up" 
+              <div
+                data-aos="skew-up"
                 className="glass-panel-morphic-light p-8 rounded-2xl relative shadow-xl overflow-hidden group hover:border-[#095054]/40 transition-colors duration-500"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#095054]/5 rounded-bl-full pointer-events-none" />
@@ -603,8 +601,8 @@ export default function App() {
               </div>
 
               {/* Message (Mission) Card */}
-              <div 
-                data-aos="skew-up" 
+              <div
+                data-aos="skew-up"
                 data-aos-delay="200"
                 className="glass-panel-morphic-light p-8 rounded-2xl relative shadow-xl overflow-hidden group hover:border-[#095054]/40 transition-colors duration-500"
               >
@@ -630,19 +628,19 @@ export default function App() {
       </section>
 
       {/* SECTION 3: SERVICES GRID (Deep Green Background, 12 Categories, Asymmetric cards) */}
-      <section 
-        id="services" 
+      <section
+        id="services"
         className="relative py-24 sm:py-36 bg-[#053234] overflow-hidden border-t border-white/5"
       >
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] glow-orb glow-orb-teal opacity-15" />
-        
+
         {/* Background text outline */}
         <div className="absolute top-12 left-12 font-serif text-[150px] leading-none text-white/3 font-black select-none pointer-events-none uppercase tracking-wider">
           SECTORS
         </div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-          
+
           {/* Header */}
           <div className="max-w-3xl mb-20 text-right lg:text-inherit">
             <span className="font-mono text-xs text-[#D9B95B] tracking-widest uppercase block mb-3 font-semibold">
@@ -666,9 +664,8 @@ export default function App() {
                   key={index}
                   data-aos="fade-up"
                   data-aos-delay={index * 50}
-                  className={`glass-panel-morphic p-8 rounded-2xl relative shadow-lg hover:border-[#D9B95B] transition-all duration-500 flex flex-col justify-between group overflow-hidden cursor-pointer ${
-                    isLarge ? 'md:col-span-2' : 'md:col-span-1'
-                  }`}
+                  className={`glass-panel-morphic p-8 rounded-2xl relative shadow-lg hover:border-[#D9B95B] transition-all duration-500 flex flex-col justify-between group overflow-hidden cursor-pointer ${isLarge ? 'md:col-span-2' : 'md:col-span-1'
+                    }`}
                   onMouseEnter={() => setHoveredCategoryIndex(index)}
                   onMouseLeave={() => setHoveredCategoryIndex(null)}
                 >
@@ -720,12 +717,12 @@ export default function App() {
       </section>
 
       {/* SECTION 4: STRATEGIC GOALS (White Background, dark green text) */}
-      <section 
+      <section
         id="goals"
         className="relative py-20 sm:py-28 bg-white text-gray-900 border-t border-b border-gray-100"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Title / Description */}
             <div className="lg:col-span-4 space-y-4 text-right lg:text-inherit">
@@ -737,8 +734,8 @@ export default function App() {
               </h2>
               <div className="w-16 h-[1px] bg-[#095054] mt-4" />
               <p className="text-gray-650 text-xs sm:text-sm font-sans font-light leading-relaxed">
-                {isAr 
-                  ? 'رسم المنهجيات الاستباقية لتنمية أعمال شركائنا وضمان استمرارية العمل بأقصى سرية ونزاهة.' 
+                {isAr
+                  ? 'رسم المنهجيات الاستباقية لتنمية أعمال شركائنا وضمان استمرارية العمل بأقصى سرية ونزاهة.'
                   : 'Fostering methodologies to support our individual and corporate clients with direct accountability.'}
               </p>
             </div>
@@ -746,7 +743,7 @@ export default function App() {
             {/* Staggered Goals Grid */}
             <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
               {d.goals.map((g, index) => (
-                <div 
+                <div
                   key={index}
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
@@ -770,14 +767,14 @@ export default function App() {
       </section>
 
       {/* SECTION 5: CUSTOMER JOURNEY (White Background, Dark Green text, interactive stations) */}
-      <section 
-        id="journey" 
+      <section
+        id="journey"
         className="relative py-24 sm:py-36 bg-white text-gray-900 overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-[500px] h-[500px] glow-orb glow-orb-teal opacity-5" />
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-          
+
           {/* Header */}
           <div className="max-w-3xl mb-20 text-right lg:text-inherit">
             <span className="font-mono text-xs text-[#095054] tracking-widest uppercase block mb-3 font-semibold">
@@ -792,7 +789,7 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Left Column: Asymmetric Clickable Step Badges */}
             <div className="lg:col-span-5 flex flex-col gap-4 font-sans">
               {d.customerJourney.stations.map((st, index) => {
@@ -801,17 +798,14 @@ export default function App() {
                   <button
                     key={index}
                     onClick={() => setActiveStationIndex(index)}
-                    className={`w-full p-5 rounded-xl text-right ${
-                      isAr ? 'text-right' : 'text-left'
-                    } border transition-all duration-300 flex items-center gap-4 cursor-pointer relative ${
-                      isActive 
-                        ? 'bg-[#095054]/5 border-[#095054] text-[#095054] shadow-md translate-x-2' 
+                    className={`w-full p-5 rounded-xl text-right ${isAr ? 'text-right' : 'text-left'
+                      } border transition-all duration-300 flex items-center gap-4 cursor-pointer relative ${isActive
+                        ? 'bg-[#095054]/5 border-[#095054] text-[#095054] shadow-md translate-x-2'
                         : 'bg-gray-50 text-gray-500 border-gray-150 hover:bg-gray-100 hover:border-gray-200'
-                    }`}
+                      }`}
                   >
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                      isActive ? 'bg-[#095054] text-white' : 'bg-gray-200 text-[#095054]'
-                    }`}>
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${isActive ? 'bg-[#095054] text-white' : 'bg-gray-200 text-[#095054]'
+                      }`}>
                       <span className="text-sm font-bold font-mono">0{st.id}</span>
                     </div>
                     <div>
@@ -839,7 +833,7 @@ export default function App() {
                   className="glass-panel-morphic-light p-8 sm:p-12 rounded-2xl border-l-4 border-l-[#095054] shadow-xl relative space-y-6 overflow-hidden text-right lg:text-inherit"
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 bg-[#095054]/5 rounded-bl-full pointer-events-none" />
-                  
+
                   <div className="flex justify-between items-center pb-4 border-b border-gray-100">
                     <span className="text-[10px] font-mono font-bold tracking-widest text-[#095054] bg-[#095054]/5 px-3 py-1 rounded">
                       {isAr ? `الخطوة ${activeStationIndex + 1} من 6` : `PHASE 0${activeStationIndex + 1} OF 6`}
@@ -854,15 +848,15 @@ export default function App() {
                     <div className="w-12 h-12 rounded-full bg-[#095054]/5 border border-[#095054]/20 flex items-center justify-center text-[#095054]">
                       {getJourneyIcon(d.customerJourney.stations[activeStationIndex].id)}
                     </div>
-                    
+
                     <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#095054] leading-tight">
-                      {isAr 
-                        ? d.customerJourney.stations[activeStationIndex].nameAr 
+                      {isAr
+                        ? d.customerJourney.stations[activeStationIndex].nameAr
                         : d.customerJourney.stations[activeStationIndex].nameEn}
                     </h3>
                     <p className="text-sm sm:text-base text-gray-650 leading-relaxed font-sans font-light">
-                      {isAr 
-                        ? d.customerJourney.stations[activeStationIndex].descriptionAr 
+                      {isAr
+                        ? d.customerJourney.stations[activeStationIndex].descriptionAr
                         : d.customerJourney.stations[activeStationIndex].descriptionEn}
                     </p>
                   </div>
@@ -886,12 +880,12 @@ export default function App() {
       </section>
 
       {/* SECTION 6: VALUES (Deep Green Background, White cards) */}
-      <section 
-        id="values" 
+      <section
+        id="values"
         className="relative py-24 sm:py-32 bg-[#095054] border-t border-white/10"
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-          
+
           <div className="max-w-3xl mb-20 text-right lg:text-inherit">
             <span className="font-mono text-xs text-[#D9B95B] tracking-widest uppercase block mb-3 font-semibold">
               {isAr ? 'المبادئ والقيم الحاكمة' : 'CORE PRINCIPLES & VALUES'}
@@ -904,7 +898,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {d.values.map((v, index) => (
-              <div 
+              <div
                 key={index}
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
@@ -930,27 +924,27 @@ export default function App() {
       </section>
 
       {/* SECTION 7: WHY US (White Background, dark green text) */}
-      <section 
-        id="why-us" 
+      <section
+        id="why-us"
         className="relative py-24 sm:py-36 bg-white text-gray-900 overflow-hidden"
       >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] glow-orb glow-orb-teal opacity-5" />
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
+
             {/* Left side visuals */}
             <div className="lg:col-span-5 relative order-2 lg:order-1">
               <div className="absolute inset-0 bg-[#095054]/5 rounded-3xl rotate-3 scale-105 pointer-events-none border border-[#095054]/15" />
-              
+
               <div className="relative p-8 sm:p-10 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border border-gray-150 overflow-hidden">
                 <div className="absolute -top-16 -right-16 w-44 h-44 bg-[#095054]/5 rounded-full blur-3xl pointer-events-none" />
                 <Sparkles className="w-12 h-12 text-[#095054] mb-8" />
-                
+
                 <h3 className="font-serif text-2xl font-bold text-[#095054] mb-4 tracking-tight">
                   {isAr ? 'بماذا نتميز عن غيرنا؟' : 'Distinctive Factors'}
                 </h3>
-                
+
                 <div className="space-y-6 pt-4 font-sans text-sm">
                   {[
                     { ar: 'الالتزام الصارم بالمواعيد والجودة', en: 'Strict deadlines & premium quality outcomes' },
@@ -981,7 +975,7 @@ export default function App() {
 
               <div className="w-24 h-[1px] bg-[#095054] mt-4" />
 
-              <p 
+              <p
                 data-aos="fade-up"
                 className="text-gray-700 leading-relaxed font-sans font-light text-base sm:text-lg whitespace-pre-line"
               >
@@ -994,16 +988,16 @@ export default function App() {
       </section>
 
       {/* SECTION 8: CONTACT & FOOTER (Deep Green Background, Jeddah office details, secure contact form) */}
-      <footer 
-        id="contact" 
+      <footer
+        id="contact"
         className="relative pt-24 pb-12 bg-[#053234] border-t border-white/10 overflow-hidden"
       >
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] glow-orb glow-orb-teal opacity-10" />
 
         <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 border-b border-white/10 pb-16">
-            
+
             {/* Left side: Jeddah office details ONLY */}
             <div className="lg:col-span-5 space-y-8 text-right lg:text-inherit">
               <div className="space-y-4">
@@ -1014,8 +1008,8 @@ export default function App() {
                   {isAr ? 'قنوات تواصلنا المعتمدة' : 'Official Channels'}
                 </h2>
                 <p className="text-gray-300 text-sm font-sans font-light leading-relaxed max-w-sm">
-                  {isAr 
-                    ? 'نحن ملتزمون بتوفير الاستجابة الفورية والحلول المرنة والالتزام التام بالجودة والمعايير العالمية.' 
+                  {isAr
+                    ? 'نحن ملتزمون بتوفير الاستجابة الفورية والحلول المرنة والالتزام التام بالجودة والمعايير العالمية.'
                     : 'We are committed to providing speed of response, flexible solutions, and a commitment to quality and international standards.'}
                 </p>
               </div>
@@ -1046,8 +1040,8 @@ export default function App() {
                     <h4 className="text-[10px] font-mono text-gray-400 uppercase tracking-wider">
                       {isAr ? 'البريد الإلكتروني المباشر' : 'DIRECT EMAIL'}
                     </h4>
-                    <a 
-                      href={`mailto:${d.contact.email}`} 
+                    <a
+                      href={`mailto:${d.contact.email}`}
                       className="text-sm text-white hover:text-[#D9B95B] transition-colors leading-relaxed block mt-1 hover-underline-gold"
                     >
                       {d.contact.email}
@@ -1080,7 +1074,7 @@ export default function App() {
             <div className="lg:col-span-7">
               <div className="glass-panel-morphic p-8 rounded-2xl shadow-xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#D9B95B]/5 rounded-bl-full pointer-events-none" />
-                
+
                 <h3 className="font-serif text-xl font-bold text-white mb-6">
                   {isAr ? 'أرسل لنا استفسارًا قانونيًا سريًا' : 'Send a Confidential Case Inquiry'}
                 </h3>
@@ -1091,8 +1085,8 @@ export default function App() {
                       <label className="block text-[10px] uppercase text-gray-400 mb-2 font-mono tracking-wider">
                         {isAr ? 'الاسم بالكامل' : 'Full Name'}
                       </label>
-                      <input 
-                        type="text" 
+                      <input
+                        type="text"
                         required
                         value={formInput.name}
                         onChange={(e) => setFormInput(prev => ({ ...prev, name: e.target.value }))}
@@ -1104,8 +1098,8 @@ export default function App() {
                       <label className="block text-[10px] uppercase text-gray-400 mb-2 font-mono tracking-wider">
                         {isAr ? 'البريد الإلكتروني' : 'Email Address'}
                       </label>
-                      <input 
-                        type="email" 
+                      <input
+                        type="email"
                         required
                         value={formInput.email}
                         onChange={(e) => setFormInput(prev => ({ ...prev, email: e.target.value }))}
@@ -1119,8 +1113,8 @@ export default function App() {
                     <label className="block text-[10px] uppercase text-gray-400 mb-2 font-mono tracking-wider">
                       {isAr ? 'موجز الاستفسار / تفاصيل الملف' : 'Inquiry / Subject Matter Brief'}
                     </label>
-                    <textarea 
-                      rows={4} 
+                    <textarea
+                      rows={4}
                       required
                       value={formInput.message}
                       onChange={(e) => setFormInput(prev => ({ ...prev, message: e.target.value }))}
@@ -1129,7 +1123,7 @@ export default function App() {
                     />
                   </div>
 
-                  <button 
+                  <button
                     type="submit"
                     className="w-full py-4 bg-[#D9B95B] hover:bg-[#f1cf72] text-black font-semibold text-xs tracking-widest uppercase rounded-xl transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer"
                   >
@@ -1139,14 +1133,14 @@ export default function App() {
 
                   <AnimatePresence>
                     {formSubmitted && (
-                      <motion.p 
+                      <motion.p
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
                         className="text-xs text-emerald-400 text-center font-mono mt-4 animate-pulse"
                       >
-                        {isAr 
-                          ? '✓ تم استلام رسالتك بسرية تامة. سيقوم المستشار المختص بمراجعة الملف والتواصل معك.' 
+                        {isAr
+                          ? '✓ تم استلام رسالتك بسرية تامة. سيقوم المستشار المختص بمراجعة الملف والتواصل معك.'
                           : '✓ Inquiry received under containment. Lead counsel will review and respond shortly.'}
                       </motion.p>
                     )}
