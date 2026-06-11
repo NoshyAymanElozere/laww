@@ -1,0 +1,6 @@
+{
+  "name": "Nokhbat Al-Ma'ali Law Firm",
+  "description": "شركة نخبة المعالي للمحاماة والاستشارات القانونية - شركة قانونية مرخصة تقدم خدمات قانونية وشرعية متكاملة للأفراد والشركات في المملكة العربية السعودية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
