@@ -294,8 +294,10 @@ export default function App() {
       />
       
       {/* Fixed Ambient Glow Orbs */}
-      <div className="glow-orb glow-orb-teal w-[800px] h-[800px] -top-96 -left-96 animate-drift" />
-      <div className="glow-orb glow-orb-gold w-[700px] h-[700px] bottom-[-200px] right-[-200px] animate-drift" style={{ animationDelay: '-5s' }} />
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="glow-orb glow-orb-teal w-[800px] h-[800px] -top-96 -left-96 animate-drift" />
+        <div className="glow-orb glow-orb-gold w-[700px] h-[700px] bottom-[-200px] right-[-200px] animate-drift" style={{ animationDelay: '-5s' }} />
+      </div>
 
       {/* READING PROGRESS BAR */}
       <div 
@@ -305,7 +307,7 @@ export default function App() {
 
       {/* FIXED GLASS HEADER (Floating modern pill shape inspired by second image) */}
       <div className="fixed top-6 inset-x-0 z-40 px-4 md:px-8 pointer-events-none">
-        <header className="max-w-7xl mx-auto h-20 bg-[#095054]/80 backdrop-blur-md border border-white/10 rounded-full shadow-2xl flex justify-between items-center px-6 md:px-8 pointer-events-auto">
+        <header className="w-full max-w-7xl mx-auto h-20 bg-[#095054]/80 backdrop-blur-md border border-white/10 rounded-full shadow-2xl flex justify-between items-center px-6 md:px-8 pointer-events-auto">
           {/* Logo brand */}
           <a href="#" className="group flex items-center justify-center shrink-0">
             <div className="w-16 h-16 flex items-center justify-center relative transition-colors duration-500">
