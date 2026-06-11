@@ -12,6 +12,11 @@ import 'aos/dist/aos.css';
 
 import { ELITE_MAALI_DATA } from './data';
 import logoImg from './assets/images/logo.webp';
+import slide1 from './assets/images/supreme_consulting_hero_1781120405885.png';
+import slide2 from './assets/images/legal_meeting_hero_1781120375724.png';
+import slide3 from './assets/images/riyadh_skyline_hero_1781120361392.png';
+import slide4 from './assets/images/contract_signing_hero_1781120389685.png';
+import slide5 from './assets/images/arbitration_hall_hero_1781120423740.png';
 
 export default function App() {
   const [lang, setLang] = useState<'ar' | 'en'>('ar'); // Default to Arabic as requested
@@ -42,27 +47,27 @@ export default function App() {
   const [heroSlideIndex, setHeroSlideIndex] = useState(0);
   const heroSlides = [
     {
-      img: '/src/assets/images/supreme_consulting_hero_1781120405885.png',
+      img: slide1,
       titleAr: 'الريادة والتميز في الاستشارات القضائية والتمثيل الشرعي',
       titleEn: 'Leadership and Excellence in Judicial Consultations & Representation'
     },
     {
-      img: '/src/assets/images/legal_meeting_hero_1781120375724.png',
+      img: slide2,
       titleAr: 'لقاءات وصياغة قانونية متكاملة لشركائنا',
       titleEn: 'Integrated Legal Meetings & Drafting For Our Partners'
     },
     {
-      img: '/src/assets/images/riyadh_skyline_hero_1781120361392.png',
+      img: slide3,
       titleAr: 'رؤية تشريعية ممتدة تغطي كافة أرجاء المملكة',
       titleEn: 'Legislative Vision Covering the Entire Kingdom'
     },
     {
-      img: '/src/assets/images/contract_signing_hero_1781120389685.png',
+      img: slide4,
       titleAr: 'صياغة وتوثيق العقود التجارية المحلية والدولية',
       titleEn: 'Drafting & Executing Local & International Contracts'
     },
     {
-      img: '/src/assets/images/arbitration_hall_hero_1781120423740.png',
+      img: slide5,
       titleAr: 'تسوية النزاعات والتحكيم التجاري الفعال',
       titleEn: 'Dispute Resolution & Effective Commercial Arbitration'
     }
