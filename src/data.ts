@@ -14,6 +14,10 @@ export interface ServiceCategory {
   categoryAr: string;
   itemsEn: string[];
   itemsAr: string[];
+  descriptionEn: string;
+  descriptionAr: string;
+  pointsEn: string[];
+  pointsAr: string[];
 }
 
 export interface JourneyStation {
@@ -155,76 +159,182 @@ export const ELITE_MAALI_DATA: EliteMaaliData = {
     "introEn": "At Elite Al-Maali Company, \"Lawyers and Legal Consultants,\" we provide legal and Sharia services with a high level of quality, value, and professionalism",
     "categories": [
       {
-        "categoryEn": "Companies",
-        "categoryAr": "الشركات",
-        "itemsEn": ["Establishment, contracts, transformation, governance"],
-        "itemsAr": ["التأسيس، العقود، التحول، الحوكمة"]
+        "categoryEn": "Corporate Law & Business Advisory",
+        "categoryAr": "الاستشارات والمساندة القانونية",
+        "itemsEn": ["Oral & written legal opinions", "Drafting & reviewing agreements", "Support in decision making"],
+        "itemsAr": ["تقديم الاستشارات الشفوية والمكتوبة", "مراجعة العقود والاتفاقيات", "الدعم في القرارات الإدارية"],
+        "descriptionAr": "يرتكز العمل لدينا في قطاع الاستشارات والمساندة القانونية بمكتب نخبة المعالي للمحاماة والاستشارات القانونية على تقديم الدعم القانوني والشرعي المتكامل والشامل لعملائنا في مختلف المجالات، بهدف حماية مصالحهم وضمان سلامة إجراءاتهم القانونية والتنظيمية.",
+        "descriptionEn": "Our work in the Legal Advisory & Corporate Support sector at Elite Al-Maali Law Firm is based on providing integrated and comprehensive legal and Sharia support to our clients in various fields, to protect their interests and ensure the safety of their legal and regulatory procedures.",
+        "pointsAr": [
+          "تقديم الاستشارات القانونية والشرعية الشفوية والمكتوبة في شتى الأنظمة والقوانين.",
+          "صياغة ومراجعة كافة أنواع العقود والاتفاقيات التجارية والمدنية ومذكرات التفاهم.",
+          "إعداد المذكرات القانونية والآراء الفنية المتخصصة لدعم القرارات الاستراتيجية.",
+          "تقييم المخاطر القانونية واقتراح الحلول الوقائية لتفادي النزاعات القضائية.",
+          "صياغة لوائح العمل الداخلية والهياكل التنظيمية بما يتوافق مع البيئة التشريعية."
+        ],
+        "pointsEn": [
+          "Providing oral and written legal and Sharia consultations in all regulations and laws.",
+          "Drafting and reviewing all types of commercial and civil contracts, agreements, and MoUs.",
+          "Preparing legal memos and specialized technical opinions to support strategic decisions.",
+          "Assessing legal risks and proposing preventive solutions to avoid judicial disputes.",
+          "Drafting internal work regulations and organizational structures in line with the legislative environment."
+        ]
       },
       {
-        "categoryEn": "Intellectual",
+        "categoryEn": "Company Services",
+        "categoryAr": "خدمات الشركات",
+        "itemsEn": ["Corporate incorporation & liquidation", "Governance regulations", "Mergers & acquisitions"],
+        "itemsAr": ["تأسيس وتصفية الشركات", "إعداد لوائح الحوكمة", "إجراء عمليات الدمج والاستحواذ"],
+        "descriptionAr": "نقدم خدمات متكاملة وحلولاً مبتكرة للشركات والمنشآت التجارية، بدءاً من مرحلة ما قبل التأسيس وحتى إتمام أعمال الصفقات أو التصفية، بما يضمن الامتثال الكامل لكافة الأنظمة المعمول بها في المملكة العربية السعودية.",
+        "descriptionEn": "We provide integrated services and innovative solutions for companies and commercial enterprises, starting from the pre-establishment phase to the completion of transactions or liquidation, ensuring full compliance with all applicable regulations in the Kingdom of Saudi Arabia.",
+        "pointsAr": [
+          "إجراءات تأسيس الشركات بكافة أشكالها القانونية (المحدودة، المساهمة، التضامنية وغيرها).",
+          "تعديل عقود التأسيس وقرارات الشركاء، وزيادة أو تخفيض رأس المال.",
+          "صياغة لوائح الحوكمة وتحديد صلاحيات مجلس الإدارة واللجان التابعة.",
+          "إدارة عمليات الدمج والاستحواذ وإجراء الدراسات النافية للجهالة (Due Diligence).",
+          "التمثيل القانوني وحضور الجمعيات العمومية وتوثيق محاضر الاجتماعات.",
+          "القيام بكافة إجراءات التصفية الاختيارية أو القضائية وقسمة وحماية الأصول."
+        ],
+        "pointsEn": [
+          "Procedures for establishing companies of all legal forms (limited liability, joint stock, partnership, etc.).",
+          "Amending articles of association, partners' resolutions, and capital increases or reductions.",
+          "Drafting governance regulations and defining the powers of the board of directors and its committees.",
+          "Managing mergers and acquisitions and conducting due diligence studies.",
+          "Legal representation, attending general assemblies, and documenting minutes of meetings.",
+          "Carrying out all voluntary or judicial liquidation procedures, and the division and protection of assets."
+        ]
+      },
+      {
+        "categoryEn": "Employment & Labor Cases",
+        "categoryAr": "القضايا العمالية",
+        "itemsEn": ["Labor regulations & contracts", "Representation in labor courts", "Employee rights & benefits"],
+        "itemsAr": ["عقود العمل ولوائح الجزاءات", "التمثيل أمام المحاكم العمالية", "حقوق ومستحقات الموظفين"],
+        "descriptionAr": "نعمل على تنظيم العلاقة بين أصحاب العمل والعاملين لديهم، من خلال صياغة عقود ولوائح عمل متزنة تحمي حقوق الطرفين وتتطابق مع أنظمة وزارة الموارد البشرية ومكتب العمل بالمملكة.",
+        "descriptionEn": "We work to regulate the relationship between employers and their employees by drafting balanced employment contracts and regulations that protect the rights of both parties and comply with the regulations of the Ministry of Human Resources and the Labor Office in the Kingdom.",
+        "pointsAr": [
+          "صياغة عقود العمل الفردية والجماعية وصياغة لوائح العمل الداخلية والموافقة عليها.",
+          "تقديم الاستشارات القانونية حول مكافأة نهاية الخدمة، ساعات العمل، الإجازات، والتعويضات.",
+          "تمثيل المنشآت والأفراد أمام المحاكم العمالية واللجان شبه القضائية في المنازعات.",
+          "صياغة لوائح الجزاءات والمخالفات العمالية وتنظيم لجان التحقيق الداخلي.",
+          "مراجعة السياسات الداخلية للمنشآت للتأكد من ملاءمتها لقانون العمل وتعديلاته."
+        ],
+        "pointsEn": [
+          "Drafting individual and collective employment contracts, and drafting and approving internal work regulations.",
+          "Providing legal consultations on end-of-service benefits, working hours, vacations, and compensations.",
+          "Representing enterprises and individuals before labor courts and quasi-judicial committees in disputes.",
+          "Drafting regulations for penalties and labor violations, and organizing internal investigation committees.",
+          "Reviewing internal policies of establishments to ensure compliance with the Labor Law and its amendments."
+        ]
+      },
+      {
+        "categoryEn": "Litigation & Dispute Resolution",
+        "categoryAr": "التقاضي وحل النزاعات",
+        "itemsEn": ["Representation before all courts", "Drafting briefs & appeals", "Arbitration & mediation"],
+        "itemsAr": ["الترافع والمدافعة أمام المحاكم", "صياغة اللوائح والاعتراضات", "التحكيم والوساطة والتسوية"],
+        "descriptionAr": "نتميز بخبرة طويلة في الترافع والمدافعة أمام كافة المحاكم واللجان القضائية وشبه القضائية في المملكة، بجانب تقديم الحلول البديلة لفض النزاعات كالتحكيم والوساطة لتوفير الوقت والجهد على عملائنا.",
+        "descriptionEn": "We are characterized by long experience in pleading and defending before all courts, judicial and quasi-judicial committees in the Kingdom, in addition to providing alternative solutions for dispute resolution such as arbitration and mediation to save time and effort for our clients.",
+        "pointsAr": [
+          "تمثيل العملاء أمام المحاكم العامة والتجارية والإدارية (ديوان المظالم) والمحاكم العمالية.",
+          "صياغة صحف الدعاوى والمذكرات الجوابية ولوائح الاعتراض والاستئناف والتماس إعادة النظر.",
+          "تمثيل الأطراف في قضايا التحكيم التجاري وصياغة مشارطات واتفاقيات التحكيم.",
+          "تقديم خدمات التفاوض والوساطة والتسوية الودية للنزاعات التجارية والمدنية.",
+          "متابعة إجراءات التنفيذ لدى قضاة التنفيذ وتحصيل المبالغ المحكوم بها وسندات الأمر."
+        ],
+        "pointsEn": [
+          "Representing clients before General, Commercial, Administrative (Board of Grievances), and Labor Courts.",
+          "Drafting statements of claim, reply briefs, objection statements, appeals, and petitions for reconsideration.",
+          "Representing parties in commercial arbitration cases and drafting arbitration submissions and agreements.",
+          "Providing negotiation, mediation, and amicable settlement services for commercial and civil disputes.",
+          "Following up on enforcement procedures with enforcement judges and collecting awarded sums and promissory notes."
+        ]
+      },
+      {
+        "categoryEn": "Intellectual Property",
         "categoryAr": "الملكية الفكرية",
-        "itemsEn": ["Registration and protection of marks, patents, and copyright"],
-        "itemsAr": ["التسجيل والحماية للعلامات، البراءات، وحقوق المؤلف"]
+        "itemsEn": ["Trademark registration", "Filing patent applications", "Copyright protection"],
+        "itemsAr": ["تسجيل العلامات التجارية", "إيداع براءات الاختراع", "حماية حقوق المؤلف والمصنفات"],
+        "descriptionAr": "نحرص على حماية الابتكارات والعلامات التجارية والإنتاج الفكري لعملائنا في ظل النهضة الاقتصادية للمملكة، ونقدم خدمات متكاملة للتسجيل والحماية القانونية ومكافحة التعديات والتقليد.",
+        "descriptionEn": "We are keen to protect the innovations, trademarks, and intellectual production of our clients in light of the Kingdom's economic renaissance, and we provide integrated services for registration, legal protection, and combating infringement and counterfeiting.",
+        "pointsAr": [
+          "تسجيل وحماية العلامات التجارية والأسماء التجارية والشعارات محلياً ودولياً.",
+          "إيداع طلبات براءات الاختراع والنماذج الصناعية وحماية حقوق المؤلف والحقوق المجاورة.",
+          "صياغة اتفاقيات الترخيص بالاستخدام ونقل التقنية (Franchise) والامتياز التجاري.",
+          "الترافع في قضايا التعدي على حقوق الملكية الفكرية وملاحقة المعتدين ومكافحة التقليد والغش التجاري.",
+          "تقديم المشورة القانونية حول الملكية الفكرية وحق المؤلف في البيئة الرقمية والتكنولوجية."
+        ],
+        "pointsEn": [
+          "Registering and protecting trademarks, trade names, and logos locally and internationally.",
+          "Filing patent applications, industrial designs, and protecting copyright and neighboring rights.",
+          "Drafting licensing agreements, technology transfers, and commercial franchises.",
+          "Pleading in intellectual property infringement cases, pursuing violators, and combating counterfeiting and commercial fraud.",
+          "Providing legal advice on intellectual property and copyright in digital and technological environments."
+        ]
       },
       {
-        "categoryEn": "Arbitration and Disputes",
-        "categoryAr": "التحكيم والمنازعات",
-        "itemsEn": ["Representation, agreements, alternative solutions"],
-        "itemsAr": ["تمثيل، اتفاقيات، حلول بديلة"]
+        "categoryEn": "Estate & Inheritance",
+        "categoryAr": "التركات",
+        "itemsEn": ["Estate listing & valuation", "Amicable division contracts", "Representation in compulsory division"],
+        "itemsAr": ["حصر التركات وتصنيف الأصول", "عقود القسمة الرضائية وتوزيع الأنصبة", "التمثيل في التركات الجبرية"],
+        "descriptionAr": "نقدم حلولاً شرعية وقانونية دقيقة لقضايا التركات وتوزيع الأصول بما يضمن الحفاظ على صلة الرحم وتجنب الخلافات العائلية، فضلاً عن تقديم الدعم الكامل في التركات المعقدة التي تحتوي على أصول تجارية وعقارية.",
+        "descriptionEn": "We provide accurate Sharia and legal solutions for estate issues and asset distribution, ensuring the preservation of family ties and avoiding family disputes, as well as providing full support in complex estates containing commercial and real estate assets.",
+        "pointsAr": [
+          "القيام بأعمال حصر الورثة وحصر تركة المتوفى وتحديد الأصول والخصوم وتقييمها.",
+          "صياغة عقود القسمة الرضائية وتوزيع الأنصبة الشرعية على الورثة وتوثيقها.",
+          "التمثيل القضائي في قضايا قسمة التركات الجبرية وتصفية الأصول العقارية والشركات التابعة للتركة.",
+          "تأسيس الأوقاف والوصايا والشركات العائلية لضمان استدامة الأصول وحمايتها قانونياً.",
+          "تقديم الاستشارات وتسييل الأصول وتوزيع العوائد المالية للتركات المعقدة."
+        ],
+        "pointsEn": [
+          "Listing heirs, identifying and valuing the deceased's estate assets, liabilities, and holdings.",
+          "Drafting and documenting amicable division contracts and distributing Sharia shares to heirs.",
+          "Judicial representation in compulsory division cases, liquidation of real estate, and companies belonging to the estate.",
+          "Establishing endowments, wills, and family companies to ensure asset sustainability and legal protection.",
+          "Providing advice, liquidating assets, and distributing financial returns for complex estates."
+        ]
       },
       {
-        "categoryEn": "General Consulting",
-        "categoryAr": "الاستشارات العامة",
-        "itemsEn": ["Legal opinions and support in decision making"],
-        "itemsAr": ["آراء قانونية ودعم في اتخاذ القرار"]
+        "categoryEn": "Zakat & Tax Services",
+        "categoryAr": "الزكاة والضريبة",
+        "itemsEn": ["Zakat & VAT consultation", "Appeals before tax committees", "Regulatory compliance audit"],
+        "itemsAr": ["استشارات ضريبة الدخل والقيمة المضافة", "الاعتراض أمام اللجان المختصة", "الامتثال للأنظمة والتعليمات"],
+        "descriptionAr": "نظراً لأهمية الجوانب الزكوية والضريبية في قطاع الأعمال، فإننا نقدم الدعم والتمثيل القانوني لضمان الامتثال للأنظمة والقرارات الصادرة وتخفيف الأعباء المترتبة على المنشآت بالطرق النظامية.",
+        "descriptionEn": "Due to the importance of Zakat and tax aspects in the business sector, we provide support and legal representation to ensure compliance with issued regulations and decisions, and to legally ease the burden on establishments.",
+        "pointsAr": [
+          "تقديم الاستشارات حول ضريبة القيمة المضافة (VAT)، ضريبة الاستقطاع، ضريبة التصرفات العقارية، والزكاة الشرعية.",
+          "صياغة وتقديم الاعتراضات والتظلمات أمام الأمانة العامة للجان الضريبية والزكوية.",
+          "الترافع أمام لجان الفصل في المخالفات والمنازعات الضريبية والزكوية بمختلف درجاتها.",
+          "مراجعة العقود والصفقات التجارية لتقييم الآثار الضريبية والزكوية المترتبة عليها.",
+          "فحص الالتزام الزكوي والضريبي للمنشآت لتفادي الغرامات والعقوبات النظامية."
+        ],
+        "pointsEn": [
+          "Providing consultations on Value Added Tax (VAT), withholding tax, real estate transaction tax, and Sharia Zakat.",
+          "Drafting and submitting objections and grievances before the General Secretariat of Tax and Zakat Committees.",
+          "Pleading before Tax and Zakat Dispute Resolution Committees of all levels.",
+          "Reviewing contracts and commercial transactions to assess their tax and Zakat implications.",
+          "Auditing Zakat and tax compliance of establishments to avoid fines and regulatory penalties."
+        ]
       },
       {
-        "categoryEn": "Labor and Human Resources",
-        "categoryAr": "العمّالي والموارد البشرية",
-        "itemsEn": ["Regulations, Contracts, Disputes, Compliance"],
-        "itemsAr": ["اللوائح، العقود المنازعات، الامتثال"]
-      },
-      {
-        "categoryEn": "Finance & Investment",
-        "categoryAr": "التمويل والاستثمار",
-        "itemsEn": ["Deals, Disclosure, Investor Protection"],
-        "itemsAr": ["صفقات، إفصاح، حماية المستثمرين"]
-      },
-      {
-        "categoryEn": "Real Estate & Contracting",
-        "categoryAr": "العقارات والمقاولات",
-        "itemsEn": ["Support in transactions, contracts and disputes"],
-        "itemsAr": ["دعم في المعاملات والعقود والنزاعات"]
-      },
-      {
-        "categoryEn": "Personal Status",
-        "categoryAr": "الأحوال الشخصية",
-        "itemsEn": ["Divorce, custody, inheritance, and alimony cases"],
-        "itemsAr": ["قضايا الطلاق، الحضانة، الإرث، والنفقة"]
-      },
-      {
-        "categoryEn": "Zakat and Taxes",
-        "categoryAr": "الزكاة والضرائب",
-        "itemsEn": ["Representation and consultation on compliance and burden relief"],
-        "itemsAr": ["تمثيل واستشارات امتثال وتخفيف الأعباء"]
-      },
-      {
-        "categoryEn": "Insurance",
-        "categoryAr": "التأمين",
-        "itemsEn": ["Contract disputes and claims"],
-        "itemsAr": ["نزاعات العقود والمطالبات"]
-      },
-      {
-        "categoryEn": "Commercial Criminal Court",
-        "categoryAr": "الجنائي التجاري",
-        "itemsEn": ["Fraud, money laundering, market irregularities"],
-        "itemsAr": ["احتيال، غسل أموال، مخالفات السوق"]
-      },
-      {
-        "categoryEn": "Administrative and Compliance",
-        "categoryAr": "الإداري والامتثال",
-        "itemsEn": ["Representation, internal policies, combating corruption"],
-        "itemsAr": ["تمثيل، سياسات داخلية، مكافحة فساد"]
+        "categoryEn": "Foreign Investor Services",
+        "categoryAr": "خدمات المستثمرين الأجانب",
+        "itemsEn": ["Investment license (MISA)", "Foreign-owned incorporation", "Local regulatory consulting"],
+        "itemsAr": ["تراخيص الاستثمار (MISA)", "تأسيس شركات رأس المال الأجنبي", "الاستشارات والامتثال المحلي"],
+        "descriptionAr": "نواكب رؤية المملكة 2030 في جذب الاستثمارات الخارجية، ونقدم حزمة متكاملة من الخدمات للمستثمر الأجنبي لتسهيل دخوله السوق السعودي وبدء نشاطه بكل سلاسة وامتثال تام للأنظمة.",
+        "descriptionEn": "We keep pace with Saudi Vision 2030 in attracting foreign investments, and we provide a comprehensive suite of services to foreign investors to facilitate their entry into the Saudi market and start their activities smoothly and in full compliance.",
+        "pointsAr": [
+          "استخراج وتجديد وتعديل تراخيص الاستثمار من وزارة الاستثمار (MISA).",
+          "تأسيس الشركات الأجنبية بالكامل أو الشركات المختلطة وتوثيق عقودها لدى وزارة التجارة.",
+          "تقديم الاستشارات القانونية حول الأنظمة والتشريعات المحلية، وحوافز الاستثمار، والقيود النوعية.",
+          "مرافقة المستثمر في استكمال متطلبات التسجيل لدى الغرف التجارية، التأمينات، والجهات الحكومية الأخرى.",
+          "صياغة عقود الشراكة الاستراتيجية بين المستثمرين الأجانب والمحليين وضمان حماية المصالح."
+        ],
+        "pointsEn": [
+          "Obtaining, renewing, and amending investment licenses from the Ministry of Investment (MISA).",
+          "Incorporating wholly foreign-owned or joint-venture companies and documenting their contracts with the Ministry of Commerce.",
+          "Providing legal consultations on local laws, investment incentives, and sector-specific restrictions.",
+          "Accompanying the investor in completing registration requirements with chambers of commerce, GOSI, and other government bodies.",
+          "Drafting strategic partnership agreements between foreign and local investors and ensuring the protection of interests."
+        ]
       }
     ]
   },

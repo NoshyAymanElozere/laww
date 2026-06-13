@@ -3,8 +3,8 @@
 
 @theme {
   --font-sans: "Tajawal", "Cairo", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", "Tajawal", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Tajawal", "Cairo", "Inter", "Playfair Display", Georgia, serif;
+  --font-mono: "Tajawal", "Cairo", "Inter", "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
 html {
@@ -181,4 +181,7 @@ html {
 [data-aos="blur-in"].aos-animate {
   filter: blur(0);
   opacity: 1;
+}
+p{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

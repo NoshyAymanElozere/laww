@@ -12,11 +12,7 @@ import 'aos/dist/aos.css';
 
 import { ELITE_MAALI_DATA } from './data';
 import logoImg from './assets/images/logo.webp';
-import slide1 from './assets/images/supreme_consulting_hero_1781120405885.png';
-import slide2 from './assets/images/legal_meeting_hero_1781120375724.png';
-import slide3 from './assets/images/riyadh_skyline_hero_1781120361392.png';
-import slide4 from './assets/images/contract_signing_hero_1781120389685.png';
-import slide5 from './assets/images/arbitration_hall_hero_1781120423740.png';
+import bannerVideo from './assets/images/banner.mp4';
 
 export default function App() {
   const [lang, setLang] = useState<'ar' | 'en'>('ar'); // Default to Arabic as requested
@@ -31,6 +27,26 @@ export default function App() {
   // State for active service category filter or modal preview
   const [hoveredCategoryIndex, setHoveredCategoryIndex] = useState<number | null>(null);
 
+  // State for active subpage service detail view
+  const [selectedServiceIndex, setSelectedServiceIndex] = useState<number | null>(null);
+
+  // Scroll to top when active service changes (simulating page navigation)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [selectedServiceIndex]);
+
+  // Unified navigation helper to handle state resetting before scrolling
+  const handleNavClick = (sectionId: string) => {
+    setSelectedServiceIndex(null);
+    setMobileMenuOpen(false);
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   // Mouse tracking spotlight state
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -43,43 +59,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
 
-  // Hero section slideshow configuration
-  const [heroSlideIndex, setHeroSlideIndex] = useState(0);
-  const heroSlides = [
-    {
-      img: slide1,
-      titleAr: 'الريادة والتميز في الاستشارات القضائية والتمثيل الشرعي',
-      titleEn: 'Leadership and Excellence in Judicial Consultations & Representation'
-    },
-    {
-      img: slide2,
-      titleAr: 'لقاءات وصياغة قانونية متكاملة لشركائنا',
-      titleEn: 'Integrated Legal Meetings & Drafting For Our Partners'
-    },
-    {
-      img: slide3,
-      titleAr: 'رؤية تشريعية ممتدة تغطي كافة أرجاء المملكة',
-      titleEn: 'Legislative Vision Covering the Entire Kingdom'
-    },
-    {
-      img: slide4,
-      titleAr: 'صياغة وتوثيق العقود التجارية المحلية والدولية',
-      titleEn: 'Drafting & Executing Local & International Contracts'
-    },
-    {
-      img: slide5,
-      titleAr: 'تسوية النزاعات والتحكيم التجاري الفعال',
-      titleEn: 'Dispute Resolution & Effective Commercial Arbitration'
-    }
-  ];
 
-  // Auto slide effect
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setHeroSlideIndex(prev => (prev + 1) % heroSlides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [heroSlides.length]);
 
   // Loading progress calculation effect
   useEffect(() => {
@@ -153,30 +133,22 @@ export default function App() {
   // Helper for services icons
   const getServiceIcon = (categoryEn: string) => {
     switch (categoryEn.toLowerCase()) {
-      case 'companies':
+      case 'corporate law & business advisory':
         return <Briefcase className="w-8 h-8 text-[#D9B95B]" />;
-      case 'intellectual':
-        return <Shield className="w-8 h-8 text-[#D9B95B]" />;
-      case 'arbitration and disputes':
-        return <Scale className="w-8 h-8 text-[#D9B95B]" />;
-      case 'general consulting':
-        return <BookOpen className="w-8 h-8 text-[#D9B95B]" />;
-      case 'labor and human resources':
-        return <Users className="w-8 h-8 text-[#D9B95B]" />;
-      case 'finance & investment':
-        return <TrendingUp className="w-8 h-8 text-[#D9B95B]" />;
-      case 'real estate & contracting':
+      case 'company services':
         return <Building2 className="w-8 h-8 text-[#D9B95B]" />;
-      case 'personal status':
+      case 'employment & labor cases':
+        return <Users className="w-8 h-8 text-[#D9B95B]" />;
+      case 'litigation & dispute resolution':
         return <Scale className="w-8 h-8 text-[#D9B95B]" />;
-      case 'zakat and taxes':
-        return <BookOpen className="w-8 h-8 text-[#D9B95B]" />;
-      case 'insurance':
+      case 'intellectual property':
+        return <Shield className="w-8 h-8 text-[#D9B95B]" />;
+      case 'estate & inheritance':
         return <Award className="w-8 h-8 text-[#D9B95B]" />;
-      case 'commercial criminal court':
-        return <ShieldCheck className="w-8 h-8 text-[#D9B95B]" />;
-      case 'administrative and compliance':
-        return <FileText className="w-8 h-8 text-[#D9B95B]" />;
+      case 'zakat & tax services':
+        return <TrendingUp className="w-8 h-8 text-[#D9B95B]" />;
+      case 'foreign investor services':
+        return <Globe className="w-8 h-8 text-[#D9B95B]" />;
       default:
         return <Scale className="w-8 h-8 text-[#D9B95B]" />;
     }
@@ -308,21 +280,37 @@ export default function App() {
       <div className="fixed top-6 inset-x-0 z-40 px-4 md:px-8 pointer-events-none">
         <header className="w-full max-w-7xl mx-auto h-20 bg-[#095054]/80 backdrop-blur-md border border-white/10 rounded-full shadow-2xl flex justify-between items-center px-6 md:px-8 pointer-events-auto">
           {/* Logo brand */}
-          <a href="#" className="group flex items-center justify-center shrink-0">
-            <div className="w-16 h-16 flex items-center justify-center relative transition-colors duration-500">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('hero');
+            }}
+            className="group flex items-center gap-2.5 shrink-0"
+          >
+            <div className="w-16 h-16 sm:w-18 sm:h-18 flex items-center justify-center relative transition-transform duration-500 group-hover:scale-105 shrink-0">
               <img src={logoImg} alt="Elite Al-Maali Logo" className="w-full h-full object-contain" />
+            </div>
+            {/* Logo text brand divider & signature */}
+            <div className="flex flex-col border-s border-white/20 ps-2.5 text-right rtl:text-right ltr:text-left">
+              <span className="font-serif text-[9px] sm:text-[10px] md:text-[11px] font-bold text-white leading-tight transition-colors duration-300 group-hover:text-[#D9B95B]">
+                {isAr ? 'شركة نخبة المعالي' : 'Elite Al-Maali'}
+              </span>
+              <span className="text-[6px] sm:text-[7px] md:text-[8px] text-[#D9B95B] font-medium tracking-wide">
+                {isAr ? 'محامون ومستشارون قانونيون' : 'Lawyers & Legal Consultants'}
+              </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8 text-[15px] font-sans font-medium text-gray-200">
-            <a href="#hero" className="hover:text-[#D9B95B] hover-underline-gold transition-colors">{isAr ? 'الرئيسية' : 'Home'}</a>
-            <a href="#about" className="hover:text-[#D9B95B] hover-underline-gold transition-colors">{isAr ? 'من نحن' : 'About'}</a>
-            <a href="#services" className="hover:text-[#D9B95B] hover-underline-gold transition-colors">{isAr ? 'الخدمات' : 'Services'}</a>
-            <a href="#journey" className="hover:text-[#D9B95B] hover-underline-gold transition-colors">{isAr ? 'رحلة العميل' : 'Journey'}</a>
-            <a href="#values" className="hover:text-[#D9B95B] hover-underline-gold transition-colors">{isAr ? 'القيم' : 'Values'}</a>
-            <a href="#why-us" className="hover:text-[#D9B95B] hover-underline-gold transition-colors">{isAr ? 'لماذا نحن' : 'Why Us'}</a>
-            <a href="#contact" className="hover:text-[#D9B95B] hover-underline-gold transition-colors">{isAr ? 'اتصل بنا' : 'Contact'}</a>
+            <button onClick={() => handleNavClick('hero')} className="hover:text-[#D9B95B] hover-underline-gold transition-colors bg-transparent border-none p-0 cursor-pointer">{isAr ? 'الرئيسية' : 'Home'}</button>
+            <button onClick={() => handleNavClick('about')} className="hover:text-[#D9B95B] hover-underline-gold transition-colors bg-transparent border-none p-0 cursor-pointer">{isAr ? 'من نحن' : 'About'}</button>
+            <button onClick={() => handleNavClick('services')} className="hover:text-[#D9B95B] hover-underline-gold transition-colors bg-transparent border-none p-0 cursor-pointer">{isAr ? 'الخدمات' : 'Services'}</button>
+            <button onClick={() => handleNavClick('journey')} className="hover:text-[#D9B95B] hover-underline-gold transition-colors bg-transparent border-none p-0 cursor-pointer">{isAr ? 'رحلة العميل' : 'Journey'}</button>
+            <button onClick={() => handleNavClick('values')} className="hover:text-[#D9B95B] hover-underline-gold transition-colors bg-transparent border-none p-0 cursor-pointer">{isAr ? 'القيم' : 'Values'}</button>
+            <button onClick={() => handleNavClick('why-us')} className="hover:text-[#D9B95B] hover-underline-gold transition-colors bg-transparent border-none p-0 cursor-pointer">{isAr ? 'لماذا نحن' : 'Why Us'}</button>
+            <button onClick={() => handleNavClick('contact')} className="hover:text-[#D9B95B] hover-underline-gold transition-colors bg-transparent border-none p-0 cursor-pointer">{isAr ? 'اتصل بنا' : 'Contact'}</button>
           </nav>
 
           {/* Languages Switcher & Mobile Menu Trigger */}
@@ -354,163 +342,193 @@ export default function App() {
             className="fixed inset-x-4 md:inset-x-8 top-28 z-35 lg:hidden bg-[#095054]/95 border border-white/15 backdrop-blur-xl p-6 rounded-3xl shadow-2xl"
           >
             <nav className="flex flex-col gap-6 text-[18px] font-sans font-medium text-gray-200">
-              <a href="#hero" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#D9B95B]">{isAr ? 'الرئيسية' : 'Home'}</a>
-              <a href="#about" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#D9B95B]">{isAr ? 'من نحن' : 'About Us'}</a>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#D9B95B]">{isAr ? 'الخدمات' : 'Services'}</a>
-              <a href="#journey" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#D9B95B]">{isAr ? 'رحلة العميل' : 'Journey'}</a>
-              <a href="#values" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#D9B95B]">{isAr ? 'القيم' : 'Values'}</a>
-              <a href="#why-us" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#D9B95B]">{isAr ? 'لماذا نحن' : 'Why Us'}</a>
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#D9B95B]">{isAr ? 'اتصل بنا' : 'Contact'}</a>
+              <button onClick={() => handleNavClick('hero')} className="text-right hover:text-[#D9B95B] bg-transparent border-none p-0 cursor-pointer">{isAr ? 'الرئيسية' : 'Home'}</button>
+              <button onClick={() => handleNavClick('about')} className="text-right hover:text-[#D9B95B] bg-transparent border-none p-0 cursor-pointer">{isAr ? 'من نحن' : 'About Us'}</button>
+              <button onClick={() => handleNavClick('services')} className="text-right hover:text-[#D9B95B] bg-transparent border-none p-0 cursor-pointer">{isAr ? 'الخدمات' : 'Services'}</button>
+              <button onClick={() => handleNavClick('journey')} className="text-right hover:text-[#D9B95B] bg-transparent border-none p-0 cursor-pointer">{isAr ? 'رحلة العميل' : 'Journey'}</button>
+              <button onClick={() => handleNavClick('values')} className="text-right hover:text-[#D9B95B] bg-transparent border-none p-0 cursor-pointer">{isAr ? 'القيم' : 'Values'}</button>
+              <button onClick={() => handleNavClick('why-us')} className="text-right hover:text-[#D9B95B] bg-transparent border-none p-0 cursor-pointer">{isAr ? 'لماذا نحن' : 'Why Us'}</button>
+              <button onClick={() => handleNavClick('contact')} className="text-right hover:text-[#D9B95B] bg-transparent border-none p-0 cursor-pointer">{isAr ? 'اتصل بنا' : 'Contact'}</button>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* SECTION 1: HERO (Deep Green Background, asymmetrical layout, floating license) */}
-      <section
-        id="hero"
-        className="relative min-h-screen pt-44 pb-20 flex items-center justify-center overflow-hidden bg-[#095054]"
-      >
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Hero text */}
-          <div className="lg:col-span-7 z-10 space-y-8 text-right lg:text-inherit">
+      {selectedServiceIndex === null ? (
+        <>
+          {/* SECTION 1: HERO (Cinematic Background Video, Asymmetrical Layout, Gold Accents) */}
+          <section
+            id="hero"
+            className="relative min-h-screen pt-40 pb-20 flex items-center justify-center overflow-hidden bg-[#095054]"
+          >
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover scale-[1.03] filter brightness-[0.45] contrast-[1.05]"
+          >
+            <source src={bannerVideo} type="video/mp4" />
+          </video>
+          {/* Multi-layered cinematic overlays */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-[#095054]/60 to-[#095054]/95 z-1" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,185,91,0.08)_0%,transparent_60%)] z-1" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+          {/* Right Column (Arabic text right-aligned, English text left-aligned) */}
+          <div className="lg:col-span-7 space-y-8 text-right lg:text-inherit">
+            {/* Tagline Badge */}
             <div
-              data-aos="fade-up"
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#D9B95B]/30 bg-[#D9B95B]/5 backdrop-blur-md"
+              data-aos="fade-down"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#D9B95B]/40 bg-[#D9B95B]/10 backdrop-blur-md"
             >
               <Sparkles className="w-4 h-4 text-[#D9B95B] animate-pulse" />
-              <span className="font-mono text-[10px] tracking-widest text-[#D9B95B] uppercase">
-                {isAr ? 'سبق وريادة تشريعية' : 'Sovereign Legal Stewardship'}
+              <span className="font-mono text-[10px] sm:text-xs tracking-widest text-[#D9B95B] uppercase font-bold">
+                {isAr ? 'ترخيص وتوثيق رسمي معتمد' : 'Ministry of Justice Certified'}
               </span>
             </div>
 
+            {/* Main Headline */}
             <div className="space-y-4">
               <h1
                 data-aos="skew-up"
                 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.15]"
               >
-                {isAr ? d.company.fullNameAr : d.company.fullNameEn}
+                {isAr ? 'شركة نخبة المعالي' : 'Elite Al-Maali'}
+                <span className="block text-2xl sm:text-4.5xl lg:text-5.5xl text-[#D9B95B] mt-2 font-medium font-sans">
+                  {isAr ? 'للمحاماة والاستشارات القانونية' : 'Lawyers & Legal Consultants'}
+                </span>
               </h1>
               <p
                 data-aos="fade-up"
                 data-aos-delay="200"
-                className="text-lg sm:text-2xl text-[#D9B95B] font-light leading-relaxed font-sans"
+                className="text-lg sm:text-xl text-gray-200 font-light leading-relaxed font-sans max-w-2xl"
               >
                 {isAr ? d.company.taglineAr : d.company.taglineEn}
               </p>
             </div>
 
-            {/* Overlapping Glass License Panel */}
+            {/* Premium Ministry of Justice Card */}
             <div
               data-aos="blur-in"
               data-aos-delay="400"
-              className="glass-panel-morphic p-6 rounded-xl relative max-w-xl shadow-2xl mt-8"
+              className="glass-panel-morphic p-6 rounded-2xl relative max-w-xl shadow-2xl border border-[#D9B95B]/20"
             >
-              <div className="absolute top-0 right-8 transform -translate-y-1/2 bg-[#D9B95B] text-black text-[9px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded">
-                {isAr ? 'الترخيص والاعتماد' : 'ACCREDITATION'}
+              <div className="absolute top-0 right-8 transform -translate-y-1/2 bg-[#D9B95B] text-black text-[9px] font-mono font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md">
+                {isAr ? 'الاعتماد القضائي' : 'JUDICIAL ACCREDITATION'}
               </div>
-              <p className="text-sm text-gray-200 leading-relaxed font-sans font-light">
-                {isAr
-                  ? 'مرخصة رسميًا لمزاولة مهنة المحاماة والاستشارات القانونية من قبل وزارة العدل في المملكة العربية السعودية.'
-                  : d.company.license}
-              </p>
-              <div className="mt-4 flex items-center gap-3 text-[10px] font-mono text-[#D9B95B]">
-                <Shield className="w-4 h-4" />
-                <span>{isAr ? 'موثوق • معتمد • مستدام' : 'LICENSED • VALIDATED • COMPLIANT'}</span>
+              <div className="flex gap-4 items-start">
+                <div className="w-12 h-12 rounded-xl bg-[#D9B95B]/10 border border-[#D9B95B]/30 flex items-center justify-center shrink-0 text-[#D9B95B] shadow-inner">
+                  <ShieldCheck className="w-6 h-6 animate-pulse" />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-gray-200 leading-relaxed font-sans font-light">
+                    {isAr
+                      ? 'مرخصة رسميًا لمزاولة مهنة المحاماة والاستشارات الشرعية والنظامية من قبل وزارة العدل في المملكة العربية السعودية.'
+                      : d.company.license}
+                  </p>
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-[#D9B95B] tracking-wider">
+                    <span>• {isAr ? 'موثوقية تامة' : 'Sovereign Trust'}</span>
+                    <span>• {isAr ? 'امتثال كامل' : 'Full Compliance'}</span>
+                    <span>• {isAr ? 'حلول مستدامة' : 'Sustainable Practice'}</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div data-aos="fade-up" data-aos-delay="600" className="flex flex-wrap gap-4 pt-4">
+            {/* CTAs */}
+            <div data-aos="fade-up" data-aos-delay="600" className="flex flex-wrap gap-4 pt-2">
               <a
                 href="#services"
-                className="btn-liquid px-8 py-4 bg-[#D9B95B] text-black font-semibold text-xs tracking-widest uppercase rounded shadow-lg hover:shadow-[#D9B95B]/20 transition-all duration-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('services');
+                }}
+                className="btn-liquid px-8 py-4 bg-[#D9B95B] text-black font-semibold text-xs tracking-widest uppercase rounded-xl shadow-lg shadow-[#D9B95B]/20 hover:shadow-[#D9B95B]/40 hover:bg-[#f1cf72] transition-all duration-300 flex items-center gap-2 cursor-pointer"
               >
-                {isAr ? 'استكشاف قطاعات العمل' : 'Explore Sectors'}
+                <span>{isAr ? 'استكشاف قطاعات العمل' : 'Explore Sectors'}</span>
+                <Briefcase className="w-4 h-4" />
               </a>
               <a
                 href="#contact"
-                className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold text-xs tracking-widest uppercase rounded border border-white/10 hover:border-[#D9B95B]/40 transition-all duration-300"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('contact');
+                }}
+                className="px-8 py-4 bg-white/5 hover:bg-[#D9B95B]/10 text-white hover:text-white font-semibold text-xs tracking-widest uppercase rounded-xl border border-white/15 hover:border-[#D9B95B]/50 transition-all duration-300 flex items-center gap-2 cursor-pointer"
               >
-                {isAr ? 'أطلب استشارة ' : 'Confidential Contact'}
+                <span>{isAr ? 'طلب استشارة سرية' : 'Confidential Contact'}</span>
+                <Send className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Hero visuals: Asymmetric overlapping images */}
+          {/* Left Column (Interactive Trust Pillars Dashboard) */}
           <div className="lg:col-span-5 relative mt-12 lg:mt-0 flex justify-center items-center">
-            {/* Background outline text */}
-            <div className="absolute -top-16 -left-12 font-serif text-8xl md:text-9xl text-white/5 font-extrabold select-none pointer-events-none uppercase tracking-widest vertical-text-right">
-              MAALI
-            </div>
 
-            <div className="relative w-full max-w-[420px] h-[500px]">
-              {/* Slideshow Card */}
-              <div
-                data-aos="skew-up"
-                data-aos-delay="200"
-                className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-[#095054] z-10"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={heroSlideIndex}
-                    src={heroSlides[heroSlideIndex].img}
-                    alt="Elite Al-Maali Slideshow"
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 0.65, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.8 }}
-                    className="w-full h-full object-cover"
-                  />
-                </AnimatePresence>
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent pointer-events-none" />
+            {/* Glass Dashboard Container */}
+            <div
+              data-aos="skew-up"
+              data-aos-delay="300"
+              className="relative w-full max-w-[420px] glass-panel-morphic p-8 rounded-3xl border border-white/10 shadow-2xl flex flex-col gap-6"
+            >
+              <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-gradient-to-br from-[#D9B95B] to-[#f1cf72] flex items-center justify-center text-black shadow-lg shadow-[#D9B95B]/25">
+                <Scale className="w-6 h-6 animate-float-slow" />
+              </div>
 
-                {/* Info Overlay inside Slide */}
-                <div className="absolute bottom-10 inset-x-6 z-25 text-right font-sans">
-                  <span className="text-[9px] uppercase tracking-widest text-[#D9B95B] font-mono block mb-1">
-                    {isAr ? 'محطة تشريعية نشطة' : 'ACTIVE LEGISLATIVE DEPOT'}
+              <div className="text-center pt-6 space-y-2">
+                <h3 className="font-serif text-lg font-bold text-white tracking-wide">
+                  {isAr ? 'شريكك الاستراتيجي في المملكة' : 'Sovereign Legal Trust'}
+                </h3>
+                <p className="text-xs text-[#D9B95B] font-mono tracking-widest uppercase">
+                  {isAr ? 'تأصيل وتوجيه تشريعي' : 'Legislative Direction'}
+                </p>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5 font-sans">
+                <div className="bg-black/25 p-4 rounded-2xl border border-white/5 hover:border-[#D9B95B]/25 transition-all text-center group">
+                  <span className="text-xl sm:text-2xl font-bold font-serif text-[#D9B95B] block mb-1 group-hover:scale-105 transition-transform duration-300">
+                    {isAr ? '١٠٠٪' : '100%'}
                   </span>
-                  <h4 className="text-sm font-medium text-white leading-tight">
-                    {isAr ? heroSlides[heroSlideIndex].titleAr : heroSlides[heroSlideIndex].titleEn}
-                  </h4>
+                  <span className="text-[10px] text-gray-300 tracking-wider font-light block">
+                    {isAr ? 'سرية وأمان تام' : 'Confidentiality'}
+                  </span>
+                </div>
+
+                <div className="bg-black/25 p-4 rounded-2xl border border-white/5 hover:border-[#D9B95B]/25 transition-all text-center group">
+                  <span className="text-xl sm:text-2xl font-bold font-serif text-[#D9B95B] block mb-1 group-hover:scale-105 transition-transform duration-300">
+                    {isAr ? '٢٠+' : '20+'}
+                  </span>
+                  <span className="text-[10px] text-gray-300 tracking-wider font-light block">
+                    {isAr ? 'سنة خبرة متراكمة' : 'Years Experience'}
+                  </span>
+                </div>
+
+                <div className="bg-black/25 p-4 rounded-2xl border border-white/5 hover:border-[#D9B95B]/25 transition-all text-center group col-span-2">
+                  <span className="text-sm font-semibold text-[#D9B95B] block mb-1">
+                    {isAr ? 'المقر الرئيسي: جدة' : 'Headquarters: Jeddah'}
+                  </span>
+                  <span className="text-[9px] text-gray-300 font-mono tracking-wider">
+                    {isAr ? 'طريق المدينة المنورة • حي الفيصلية' : 'Madinah Road • Al-Faisaliah'}
+                  </span>
                 </div>
               </div>
 
-              {/* Slider dot indicators */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
-                {heroSlides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setHeroSlideIndex(idx)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${heroSlideIndex === idx ? 'bg-[#D9B95B] w-6' : 'bg-white/30 hover:bg-white/50'
-                      }`}
-                  />
-                ))}
-              </div>
-
-              {/* Slider arrows */}
-              <button
-                onClick={() => setHeroSlideIndex(prev => (prev - 1 + heroSlides.length) % heroSlides.length)}
-                className="absolute left-[-20px] top-1/2 transform -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 flex items-center justify-center text-white transition-all cursor-pointer"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => setHeroSlideIndex(prev => (prev + 1) % heroSlides.length)}
-                className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 flex items-center justify-center text-white transition-all cursor-pointer"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-
-              {/* Floating logo/icon descriptor */}
-              <div
-                data-aos="zoom-in"
-                data-aos-delay="600"
-                className="absolute top-12 right-[-30px] glass-panel-morphic p-4 rounded-xl z-20 flex flex-col items-center gap-2 shadow-2xl border border-[#D9B95B]/20"
-              >
-                <div className="w-10 h-10 rounded-full bg-[#D9B95B] flex items-center justify-center text-black">
-                  <Scale className="w-5 h-5" />
+              {/* Active Specializations marquee simulation */}
+              <div className="bg-[#095054]/40 p-4 rounded-2xl border border-white/5 space-y-2">
+                <div className="flex justify-between items-center text-[9px] font-mono text-[#D9B95B] uppercase tracking-wider">
+                  <span>{isAr ? 'قطاعات نشطة' : 'Active Practices'}</span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
                 </div>
-                <span className="font-serif text-[10px] font-bold text-white">Elite Scale</span>
+                <div className="text-xs text-gray-200 font-sans font-light leading-relaxed">
+                  {isAr
+                    ? 'الشركات والتحول الرقمي • صياغة العقود التجارية • التحكيم وتسوية النزاعات • الملكية الفكرية'
+                    : 'Corporate Governance • Drafting Contracts • Arbitration & Dispute Resolution • Intellectual Property'}
+                </div>
               </div>
             </div>
           </div>
@@ -627,10 +645,10 @@ export default function App() {
         </div>
       </section>
 
-      {/* SECTION 3: SERVICES GRID (Deep Green Background, 12 Categories, Asymmetric cards) */}
+      {/* SECTION 3: SERVICES GRID (Deep Green Background, 8 Categories, Asymmetric cards) */}
       <section
         id="services"
-        className="relative py-24 sm:py-36 bg-[#053234] overflow-hidden border-t border-white/5"
+        className="relative py-24 sm:py-36 bg-[#095054]/80 overflow-hidden border-t border-white/5"
       >
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[600px] h-[600px] glow-orb glow-orb-teal opacity-15" />
 
@@ -668,6 +686,7 @@ export default function App() {
                     }`}
                   onMouseEnter={() => setHoveredCategoryIndex(index)}
                   onMouseLeave={() => setHoveredCategoryIndex(null)}
+                  onClick={() => setSelectedServiceIndex(index)}
                 >
                   {/* Subtle index stamp */}
                   <div className="absolute top-6 end-8 text-3xl font-serif font-black text-white/5 group-hover:text-[#D9B95B]/15 transition-colors duration-500">
@@ -865,7 +884,7 @@ export default function App() {
                     <span>INTEGRATED CLIENT SERVICES TIMELINE</span>
                     <a
                       href="#contact"
-                      className="px-5 py-2.5 bg-[#095054] text-white font-semibold text-xs tracking-wider uppercase rounded hover:bg-[#053234] transition-colors"
+                      className="px-5 py-2.5 bg-[#095054] text-white font-semibold text-xs tracking-wider uppercase rounded hover:bg-[#095054]/80transition-colors"
                     >
                       {isAr ? 'حجز لقاء لمناقشة التفاصيل' : 'Request Briefing'}
                     </a>
@@ -982,15 +1001,181 @@ export default function App() {
                 {isAr ? d.whyUs.ar : d.whyUs.en}
               </p>
             </div>
-
           </div>
         </div>
       </section>
+        </>
+      ) : (
+        /* SECTION: SERVICES DETAIL SUBPAGE */
+        <section className="relative pt-36 pb-20 bg-white text-gray-900 min-h-[70vh] overflow-hidden">
+          {/* Subtle background graphics/glow orbs matching the white background theme */}
+          <div className="absolute top-0 right-0 w-96 h-96 glow-orb glow-orb-teal opacity-5 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 glow-orb glow-orb-gold opacity-5 pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            {/* Breadcrumbs & Back Button Row */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-12 pb-6 border-b border-gray-100 font-sans">
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500">
+                <button
+                  onClick={() => setSelectedServiceIndex(null)}
+                  className="hover:text-[#095054] transition-colors"
+                >
+                  {isAr ? 'الرئيسية' : 'Home'}
+                </button>
+                <ChevronLeft className={`w-4 h-4 shrink-0 text-gray-400 ${isAr ? '' : 'rotate-180'}`} />
+                <span className="text-gray-400">{isAr ? 'خدماتنا' : 'Our Services'}</span>
+                <ChevronLeft className={`w-4 h-4 shrink-0 text-gray-400 ${isAr ? '' : 'rotate-180'}`} />
+                <span className="text-[#095054] font-medium">
+                  {isAr
+                    ? d.services.categories[selectedServiceIndex].categoryAr
+                    : d.services.categories[selectedServiceIndex].categoryEn}
+                </span>
+              </div>
+
+              <button
+                onClick={() => setSelectedServiceIndex(null)}
+                className="group flex items-center gap-2 text-sm font-semibold text-[#095054] hover:text-[#D9B95B] transition-colors"
+              >
+                <ArrowRight className={`w-4 h-4 transition-transform ${isAr ? 'group-hover:translate-x-1' : 'rotate-180 group-hover:-translate-x-1'}`} />
+                <span>{isAr ? 'العودة للرئيسية' : 'Back to Home'}</span>
+              </button>
+            </div>
+
+            {/* Main Layout Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              {/* Sidebar (Tabs list of all services) */}
+              <div className="lg:col-span-4 space-y-6">
+                <div className="bg-[#095054]/5 rounded-2xl p-6 border border-[#095054]/10">
+                  <h3 className="font-serif text-lg font-bold text-[#095054] mb-4 pb-3 border-b border-[#095054]/10">
+                    {isAr ? 'جميع الخدمات' : 'All Services'}
+                  </h3>
+                  <div className="space-y-2">
+                    {d.services.categories.map((cat, idx) => {
+                      const isActive = idx === selectedServiceIndex;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => setSelectedServiceIndex(idx)}
+                          className={`w-full text-right ${isAr ? 'text-right' : 'text-left'} px-4 py-3 rounded-xl text-sm transition-all duration-300 flex justify-between items-center group font-sans ${
+                            isActive
+                              ? 'bg-[#095054] text-white shadow-md font-semibold border-r-4 border-[#D9B95B]'
+                              : 'bg-white hover:bg-[#095054]/5 text-gray-700 border border-gray-200'
+                          }`}
+                        >
+                          <span>{isAr ? cat.categoryAr : cat.categoryEn}</span>
+                          <ChevronLeft
+                            className={`w-4 h-4 shrink-0 transition-transform ${
+                              isActive ? 'text-[#D9B95B]' : 'text-gray-400 group-hover:text-[#095054]'
+                            } ${isAr ? '' : 'rotate-180'}`}
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Main Content Area */}
+              <div className="lg:col-span-8 space-y-8">
+                <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm space-y-6">
+                  {/* Title & Icon */}
+                  <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between pb-6 border-b border-gray-100">
+                    <div className="flex gap-4 items-center">
+                      <div className="w-16 h-16 rounded-2xl bg-[#095054]/10 border border-[#095054]/20 flex items-center justify-center text-[#095054] shrink-0">
+                        {getServiceIcon(d.services.categories[selectedServiceIndex].categoryEn)}
+                      </div>
+                      <div className="space-y-1">
+                        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#095054]">
+                          {isAr
+                            ? d.services.categories[selectedServiceIndex].categoryAr
+                            : d.services.categories[selectedServiceIndex].categoryEn}
+                        </h2>
+                        <span className="text-[10px] font-mono tracking-widest text-[#D9B95B] uppercase block">
+                          {isAr ? 'مكتب نخبة المعالي للمحاماة والاستشارات' : 'Elite Al-Maali Law Firm'}
+                        </span>
+                      </div>
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-[#D9B95B]/10 border border-[#D9B95B]/30 text-[10px] font-mono text-[#095054] uppercase font-semibold">
+                      {isAr ? 'قطاع ممارسة معتمد' : 'ACTIVE PRACTICE'}
+                    </span>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-750 leading-relaxed font-sans text-base sm:text-lg whitespace-pre-line font-light">
+                    {isAr
+                      ? d.services.categories[selectedServiceIndex].descriptionAr
+                      : d.services.categories[selectedServiceIndex].descriptionEn}
+                  </p>
+
+                  {/* Bullet points */}
+                  <div className="space-y-4 pt-4">
+                    <h3 className="font-serif text-lg font-bold text-[#095054]">
+                      {isAr ? 'الخدمات التي نقدمها في هذا القطاع تشمل:' : 'Services we provide in this sector include:'}
+                    </h3>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans">
+                      {(isAr
+                        ? d.services.categories[selectedServiceIndex].pointsAr
+                        : d.services.categories[selectedServiceIndex].pointsEn
+                      ).map((point, ptIdx) => (
+                        <li
+                          key={ptIdx}
+                          className="flex gap-3 items-start bg-[#095054]/5 p-4 rounded-xl border border-[#095054]/5 hover:border-[#095054]/15 transition-all text-sm text-gray-700 leading-relaxed"
+                        >
+                          <span className="w-5 h-5 rounded-full bg-[#095054]/10 border border-[#095054]/20 flex items-center justify-center text-[#095054] shrink-0 mt-0.5 font-bold">
+                            ✓
+                          </span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Contact / Action Area */}
+                  <div className="mt-8 pt-8 border-t border-gray-100 space-y-6">
+                    <div className="bg-[#095054] text-white p-6 sm:p-8 rounded-2xl relative overflow-hidden shadow-md">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-[#D9B95B]/10 rounded-bl-full pointer-events-none" />
+                      <p className="font-serif text-base sm:text-lg italic leading-relaxed text-gray-100 mb-6 relative z-10">
+                        {isAr
+                          ? '«سواء كنت بحاجة إلى استشارة قانونية أو تمثيل قانوني، فإن فريقنا هنا لمساعدتك. اتصل بنا اليوم لمناقشة احتياجاتك القانونية بسرية.»'
+                          : '“Whether you need a legal consultation or legal representation, our team is here to help. Contact us today to discuss your legal needs confidentially.”'}
+                      </p>
+
+                      <div className="flex flex-wrap gap-4 relative z-10">
+                        <a
+                          href="tel:+966562339116"
+                          className="px-6 py-3 bg-[#D9B95B] hover:bg-[#f1cf72] text-black font-semibold text-xs tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 shadow-sm"
+                        >
+                          <Phone className="w-4 h-4" />
+                          <span>{isAr ? 'اتصل الآن' : 'Call Now'}</span>
+                        </a>
+
+                        <a
+                          href={`https://api.whatsapp.com/send/?phone=966562339116&text=${encodeURIComponent(
+                            isAr
+                              ? `مرحبًا! أحتاج إلى مزيد من المعلومات حول خدمة: ${d.services.categories[selectedServiceIndex].categoryAr}`
+                              : `Hello! I need more info about: ${d.services.categories[selectedServiceIndex].categoryEn}`
+                          )}&type=phone_number&app_absent=0`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs tracking-wider uppercase rounded-xl transition-all flex items-center gap-2 shadow-sm"
+                        >
+                          <Send className="w-4 h-4" />
+                          <span>{isAr ? 'واتساب الآن' : 'WhatsApp Now'}</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* SECTION 8: CONTACT & FOOTER (Deep Green Background, Jeddah office details, secure contact form) */}
       <footer
         id="contact"
-        className="relative pt-24 pb-12 bg-[#053234] border-t border-white/10 overflow-hidden"
+        className="relative pt-24 pb-12 bg-[#095054]/80border-t border-white/10 overflow-hidden"
       >
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] glow-orb glow-orb-teal opacity-10" />
 
@@ -1058,7 +1243,7 @@ export default function App() {
                     <h4 className="text-[10px] font-mono text-gray-400 uppercase tracking-wider">
                       {isAr ? 'الهاتف والاتصال الهاتفي' : 'PHONE CHANNELS'}
                     </h4>
-                    <div className="flex flex-col gap-1 mt-1 font-mono text-sm">
+                    <div className={`flex flex-col gap-1 mt-1 font-mono text-sm ${isAr ? 'text-right' : 'text-left'}`} dir="ltr">
                       {d.contact.phone.map((ph, idx) => (
                         <a key={idx} href={`tel:${ph.replace(/\s+/g, '')}`} className="text-gray-200 hover:text-[#D9B95B] transition-colors">
                           {ph}
