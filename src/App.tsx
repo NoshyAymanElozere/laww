@@ -55,35 +55,7 @@ export default function App() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formInput, setFormInput] = useState({ name: '', email: '', message: '' });
 
-  // Loading screen states
-  const [isLoading, setIsLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState(0);
 
-
-
-  // Loading progress calculation effect
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setLoadingProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setTimeout(() => setIsLoading(false), 500);
-          return 100;
-        }
-        return prev + Math.floor(Math.random() * 15) + 5;
-      });
-    }, 120);
-    return () => clearInterval(timer);
-  }, []);
-
-  // Lock scroll when loading
-  useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isLoading]);
 
   // Initialize AOS scroll animation library
   useEffect(() => {
@@ -194,65 +166,7 @@ export default function App() {
       style={{ direction: isAr ? 'rtl' : 'ltr' }}
       onMouseMove={handleMouseMove}
     >
-      {/* PRELOADER SCREEN */}
-      <AnimatePresence>
-        {isLoading && (
-          <motion.div
-            key="preloader"
-            initial={{ opacity: 1 }}
-            exit={{
-              y: '-100%',
-              opacity: 0,
-              transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
-            }}
-            className="fixed inset-0 z-50 flex flex-col justify-between p-8 sm:p-12 bg-[#095054] text-white"
-          >
-            {/* Top row */}
-            <div className="flex justify-between items-center font-mono text-[10px] sm:text-xs text-gray-300">
-              <div>{isAr ? 'تأمين الامتثال والريادة' : 'SOVEREIGN LEGAL TRUST'}</div>
-              <div>{isAr ? 'الترخيص الوطني المعتمد' : 'LICENSED ADVISORY'}</div>
-            </div>
 
-            {/* Center Content */}
-            <div className="text-center space-y-6">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                className="w-28 h-28 mx-auto flex items-center justify-center"
-              >
-                <img src={logoImg} alt="Elite Al-Maali" className="w-full h-full object-contain" />
-              </motion.div>
-
-              <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-                {isAr ? d.company.fullNameAr : d.company.fullNameEn}
-              </h1>
-
-              <div className="font-serif text-sm sm:text-lg text-[#D9B95B] italic max-w-md mx-auto">
-                {isAr ? d.company.taglineAr : d.company.taglineEn}
-              </div>
-            </div>
-
-            {/* Bottom Progress details */}
-            <div className="space-y-4 max-w-lg mx-auto w-full">
-              <div className="flex justify-between items-end">
-                <span className="font-mono text-4xl sm:text-5xl font-black text-[#D9B95B] leading-none">
-                  {Math.min(loadingProgress, 100)}%
-                </span>
-                <span className="text-[10px] uppercase tracking-widest text-gray-400 font-mono">
-                  {isAr ? 'جاري تهيئة منصة نخبة المعالي...' : 'INITIALIZING PLATFORM STACKS...'}
-                </span>
-              </div>
-              <div className="w-full h-[2px] bg-white/10 relative overflow-hidden rounded">
-                <div
-                  className="h-full bg-[#D9B95B] transition-all duration-150 ease-out"
-                  style={{ width: `${Math.min(loadingProgress, 100)}%` }}
-                />
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
       {/* Background Orbs & Spotlight glow */}
       <div
         className="glow-orb glow-orb-gold w-[600px] h-[600px] transition-transform duration-300 pointer-events-none hidden md:block"
