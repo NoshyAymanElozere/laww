@@ -356,192 +356,139 @@ export default function App() {
 
       {selectedServiceIndex === null ? (
         <>
-          {/* SECTION 1: HERO (Cinematic Background Video, Asymmetrical Layout, Gold Accents) */}
+          {/* SECTION 1: HERO (Cinematic Background Video, Centered Corporate Identity) */}
           <section
             id="hero"
-            className="relative min-h-screen pt-40 pb-20 flex items-center justify-center overflow-hidden bg-[#095054]"
+            className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-[#095054]"
           >
-        {/* Background Video */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover scale-[1.03] filter brightness-[0.45] contrast-[1.05]"
-          >
-            <source src={bannerVideo} type="video/mp4" />
-          </video>
-          {/* Multi-layered cinematic overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-[#095054]/60 to-[#095054]/95 z-1" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,185,91,0.08)_0%,transparent_60%)] z-1" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          {/* Right Column (Arabic text right-aligned, English text left-aligned) */}
-          <div className="lg:col-span-7 space-y-8 text-right lg:text-inherit">
-            {/* Tagline Badge */}
-            <div
-              data-aos="fade-down"
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#D9B95B]/40 bg-[#D9B95B]/10 backdrop-blur-md"
-            >
-              <Sparkles className="w-4 h-4 text-[#D9B95B] animate-pulse" />
-              <span className="font-mono text-[10px] sm:text-xs tracking-widest text-[#D9B95B] uppercase font-bold">
-                {isAr ? 'ترخيص وتوثيق رسمي معتمد' : 'Ministry of Justice Certified'}
-              </span>
+            {/* Background Video */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover scale-[1.03] filter brightness-[0.4] contrast-[1.05]"
+              >
+                <source src={bannerVideo} type="video/mp4" />
+              </video>
+              {/* Cinematic overlays */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-[#095054]/55 to-[#095054]/90 z-1" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(217,185,91,0.06)_0%,transparent_65%)] z-1" />
             </div>
 
-            {/* Main Headline */}
-            <div className="space-y-4">
-              <h1
-                data-aos="skew-up"
-                className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.15]"
+            {/* Centered Identity Dashboard */}
+            <div className="max-w-5xl mx-auto px-6 w-full flex flex-col items-center justify-center text-center relative z-10 space-y-8 mt-16 pb-20">
+              
+              {/* Scales of Justice Icon */}
+              <div
+                data-aos="fade-down"
+                className="w-24 h-24 flex items-center justify-center relative text-white"
               >
-                {isAr ? 'شركة نخبة المعالي' : 'Elite Al-Maali'}
-                <span className="block text-2xl sm:text-4.5xl lg:text-5.5xl text-[#D9B95B] mt-2 font-medium font-sans">
-                  {isAr ? 'للمحاماة والاستشارات القانونية' : 'Lawyers & Legal Consultants'}
-                </span>
-              </h1>
-              <p
+                <Scale className="w-20 h-20 stroke-[1.2] text-white animate-float-slow" />
+              </div>
+
+              {/* Title & Divider Row */}
+              <div
                 data-aos="fade-up"
                 data-aos-delay="200"
-                className="text-lg sm:text-xl text-gray-200 font-light leading-relaxed font-sans max-w-2xl"
+                className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 w-full font-sans"
               >
-                {isAr ? d.company.taglineAr : d.company.taglineEn}
-              </p>
-            </div>
-
-            {/* Premium Ministry of Justice Card */}
-            <div
-              data-aos="blur-in"
-              data-aos-delay="400"
-              className="glass-panel-morphic p-6 rounded-2xl relative max-w-xl shadow-2xl border border-[#D9B95B]/20"
-            >
-              <div className="absolute top-0 right-8 transform -translate-y-1/2 bg-[#D9B95B] text-black text-[9px] font-mono font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-md">
-                {isAr ? 'الاعتماد القضائي' : 'JUDICIAL ACCREDITATION'}
-              </div>
-              <div className="flex gap-4 items-start">
-                <div className="w-12 h-12 rounded-xl bg-[#D9B95B]/10 border border-[#D9B95B]/30 flex items-center justify-center shrink-0 text-[#D9B95B] shadow-inner">
-                  <ShieldCheck className="w-6 h-6 animate-pulse" />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-200 leading-relaxed font-sans font-light">
-                    {isAr
-                      ? 'مرخصة رسميًا لمزاولة مهنة المحاماة والاستشارات الشرعية والنظامية من قبل وزارة العدل في المملكة العربية السعودية.'
-                      : d.company.license}
+                {/* Arabic Company Name */}
+                <div className="text-center md:text-right space-y-1">
+                  <h1 className="font-serif text-3xl sm:text-4xl lg:text-4.5xl font-bold text-white tracking-wide leading-tight">
+                    شركة نخبة المعالي
+                  </h1>
+                  <p className="text-[11px] sm:text-xs text-gray-300 font-light tracking-wide">
+                    محامون ومستشارون قانونيون
                   </p>
-                  <div className="flex items-center gap-2 text-[10px] font-mono text-[#D9B95B] tracking-wider">
-                    <span>• {isAr ? 'موثوقية تامة' : 'Sovereign Trust'}</span>
-                    <span>• {isAr ? 'امتثال كامل' : 'Full Compliance'}</span>
-                    <span>• {isAr ? 'حلول مستدامة' : 'Sustainable Practice'}</span>
-                  </div>
+                </div>
+
+                {/* Vertical Divider */}
+                <div className="hidden md:block w-[1.5px] h-14 bg-white/20" />
+
+                {/* English Company Name */}
+                <div className="text-center md:text-left space-y-1">
+                  <h2 className="font-serif text-3xl sm:text-4xl lg:text-4.5xl font-bold text-white tracking-wide leading-tight">
+                    Elite Al-Maali
+                  </h2>
+                  <p className="text-[11px] sm:text-xs text-gray-300 font-light tracking-wider uppercase font-mono">
+                    Lawyers & Legal Consultants Co.
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* CTAs */}
-            <div data-aos="fade-up" data-aos-delay="600" className="flex flex-wrap gap-4 pt-2">
-              <a
-                href="#services"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('services');
-                }}
-                className="btn-liquid px-8 py-4 bg-[#D9B95B] text-black font-semibold text-xs tracking-widest uppercase rounded-xl shadow-lg shadow-[#D9B95B]/20 hover:shadow-[#D9B95B]/40 hover:bg-[#f1cf72] transition-all duration-300 flex items-center gap-2 cursor-pointer"
+              {/* Bilingual Tagline */}
+              <div
+                data-aos="fade-up"
+                data-aos-delay="400"
+                className="space-y-3 pt-4 border-t border-white/5 w-full max-w-3xl"
               >
-                <span>{isAr ? 'استكشاف قطاعات العمل' : 'Explore Sectors'}</span>
-                <Briefcase className="w-4 h-4" />
-              </a>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick('contact');
-                }}
-                className="px-8 py-4 bg-white/5 hover:bg-[#D9B95B]/10 text-white hover:text-white font-semibold text-xs tracking-widest uppercase rounded-xl border border-white/15 hover:border-[#D9B95B]/50 transition-all duration-300 flex items-center gap-2 cursor-pointer"
-              >
-                <span>{isAr ? 'طلب استشارة سرية' : 'Confidential Contact'}</span>
-                <Send className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Left Column (Interactive Trust Pillars Dashboard) */}
-          <div className="lg:col-span-5 relative mt-12 lg:mt-0 flex justify-center items-center">
-
-            {/* Glass Dashboard Container */}
-            <div
-              data-aos="skew-up"
-              data-aos-delay="300"
-              className="relative w-full max-w-[420px] glass-panel-morphic p-8 rounded-3xl border border-white/10 shadow-2xl flex flex-col gap-6"
-            >
-              <div className="absolute top-0 right-1/2 translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-gradient-to-br from-[#D9B95B] to-[#f1cf72] flex items-center justify-center text-black shadow-lg shadow-[#D9B95B]/25">
-                <Scale className="w-6 h-6 animate-float-slow" />
-              </div>
-
-              <div className="text-center pt-6 space-y-2">
-                <h3 className="font-serif text-lg font-bold text-white tracking-wide">
-                  {isAr ? 'شريكك الاستراتيجي في المملكة' : 'Sovereign Legal Trust'}
-                </h3>
-                <p className="text-xs text-[#D9B95B] font-mono tracking-widest uppercase">
-                  {isAr ? 'تأصيل وتوجيه تشريعي' : 'Legislative Direction'}
+                <p className="text-lg sm:text-xl lg:text-2xl font-sans text-white font-normal leading-relaxed">
+                  {isAr
+                    ? 'نخبة المعالي ... شريكك الموثوق للحلول القانونية'
+                    : 'Elite Al-Maali — Your Trusted Partner for Legal Solutions'}
+                </p>
+                <p className="text-[11px] sm:text-xs text-gray-300 font-sans tracking-wide">
+                  {isAr
+                    ? 'Elite Al-Maali — Your Trusted Partner for Legal Solutions'
+                    : 'نخبة المعالي ... شريكك الموثوق للحلول القانونية'}
                 </p>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5 font-sans">
-                <div className="bg-black/25 p-4 rounded-2xl border border-white/5 hover:border-[#D9B95B]/25 transition-all text-center group">
-                  <span className="text-xl sm:text-2xl font-bold font-serif text-[#D9B95B] block mb-1 group-hover:scale-105 transition-transform duration-300">
-                    {isAr ? '١٠٠٪' : '100%'}
-                  </span>
-                  <span className="text-[10px] text-gray-300 tracking-wider font-light block">
-                    {isAr ? 'سرية وأمان تام' : 'Confidentiality'}
-                  </span>
-                </div>
+              {/* CTAs */}
+              <div
+                data-aos="fade-up"
+                data-aos-delay="600"
+                className="flex flex-row items-center justify-center gap-4 pt-4"
+              >
+                {/* Outline Button / خدماتنا */}
+                <a
+                  href="#services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick('services');
+                  }}
+                  className="px-6 sm:px-8 py-3 rounded-full border border-white/30 hover:border-white text-white hover:bg-white/10 transition-all text-xs sm:text-sm font-medium flex items-center gap-2 cursor-pointer"
+                >
+                  <ArrowLeft className={`w-4 h-4 transition-transform group-hover:-translate-x-1 ${isAr ? '' : 'rotate-180'}`} />
+                  <span>{isAr ? 'خدماتنا' : 'Our Services'}</span>
+                </a>
 
-                <div className="bg-black/25 p-4 rounded-2xl border border-white/5 hover:border-[#D9B95B]/25 transition-all text-center group">
-                  <span className="text-xl sm:text-2xl font-bold font-serif text-[#D9B95B] block mb-1 group-hover:scale-105 transition-transform duration-300">
-                    {isAr ? '٢٠+' : '20+'}
-                  </span>
-                  <span className="text-[10px] text-gray-300 tracking-wider font-light block">
-                    {isAr ? 'سنة خبرة متراكمة' : 'Years Experience'}
-                  </span>
-                </div>
-
-                <div className="bg-black/25 p-4 rounded-2xl border border-white/5 hover:border-[#D9B95B]/25 transition-all text-center group col-span-2">
-                  <span className="text-sm font-semibold text-[#D9B95B] block mb-1">
-                    {isAr ? 'المقر الرئيسي: جدة' : 'Headquarters: Jeddah'}
-                  </span>
-                  <span className="text-[9px] text-gray-300 font-mono tracking-wider">
-                    {isAr ? 'طريق المدينة المنورة • حي الفيصلية' : 'Madinah Road • Al-Faisaliah'}
-                  </span>
-                </div>
+                {/* Solid Button / احصل على استشارة */}
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick('contact');
+                  }}
+                  className="px-6 sm:px-8 py-3 rounded-full bg-white hover:bg-gray-100 text-black transition-all text-xs sm:text-sm font-medium flex items-center justify-center cursor-pointer shadow-lg"
+                >
+                  <span>{isAr ? 'احصل على استشارة' : 'Get Consultation'}</span>
+                </a>
               </div>
 
-              {/* Active Specializations marquee simulation */}
-              <div className="bg-[#095054]/40 p-4 rounded-2xl border border-white/5 space-y-2">
-                <div className="flex justify-between items-center text-[9px] font-mono text-[#D9B95B] uppercase tracking-wider">
-                  <span>{isAr ? 'قطاعات نشطة' : 'Active Practices'}</span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-                </div>
-                <div className="text-xs text-gray-200 font-sans font-light leading-relaxed">
-                  {isAr
-                    ? 'الشركات والتحول الرقمي • صياغة العقود التجارية • التحكيم وتسوية النزاعات • الملكية الفكرية'
-                    : 'Corporate Governance • Drafting Contracts • Arbitration & Dispute Resolution • Intellectual Property'}
-                </div>
+            </div>
+
+            {/* Bottom Bar: Vision 2030 & Saudi Bar Association */}
+            <div className="absolute bottom-0 inset-x-0 bg-[#e5e4e0] text-[#095054] py-3.5 px-6 lg:px-12 flex justify-between items-center text-[10px] sm:text-xs border-t border-[#095054]/10 font-sans font-semibold z-10">
+              {/* Left: Saudi Vision 2030 */}
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 inline-block animate-pulse" />
+                <span>
+                  {isAr ? 'رؤية 2030 — المملكة العربية السعودية' : 'Saudi Vision 2030 — Kingdom of Saudi Arabia'}
+                </span>
+              </div>
+
+              {/* Right: Saudi Bar Association */}
+              <div className="flex items-center gap-2.5">
+                <span>{isAr ? 'الهيئة السعودية للمحامين' : 'Saudi Bar Association'}</span>
+                <span className="w-7 h-7 rounded-full border border-[#095054] flex items-center justify-center font-bold text-[8px] tracking-tighter shrink-0 select-none">
+                  SBA
+                </span>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Scroll down indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center pointer-events-none select-none z-10 animate-bounce">
-          <span className="text-[9px] font-mono tracking-widest text-[#D9B95B] uppercase block mb-1">
-            {isAr ? 'اسحب لأسفل' : 'SCROLL DOWN'}
-          </span>
-          <div className="w-[1px] h-8 bg-[#D9B95B] mx-auto" />
-        </div>
-      </section>
+          </section>
 
       {/* SECTION 2: ABOUT US (White Background, dark green text, Light Morphic Panels) */}
       <section
