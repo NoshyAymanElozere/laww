@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,550;0,700;1,400&family=JetBrains+Mono:wght@300;450&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Tajawal", "Cairo", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Tajawal", "Cairo", "Inter", "Playfair Display", Georgia, serif;
-  --font-mono: "Tajawal", "Cairo", "Inter", "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Tajawal", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -12,6 +12,11 @@ html {
   background-color: #095054;
   color: #f3f4f6;
   overflow-x: hidden;
+}
+
+/* One unified font family across the entire site */
+body, p, h1, h2, h3, h4, h5, h6, a, button, span, input, textarea, select, label, li, div {
+  font-family: "Tajawal", ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Custom gorgeous premium scrollbar */
@@ -181,7 +186,4 @@ html {
 [data-aos="blur-in"].aos-animate {
   filter: blur(0);
   opacity: 1;
-}
-p{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

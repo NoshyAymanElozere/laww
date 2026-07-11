@@ -93,8 +93,8 @@ export const ELITE_MAALI_DATA: EliteMaaliData = {
   },
   "contact": {
     "email": "contactus@almaali laws.com",
-    "phone": ["+966 562 339 116", "+966 550 557 454"],
-    "addressAr": "جدة - مبنى شركة المعرفة الفرعي - كأنو 1 طريق المعرفة - حي الفرصانية - يوسف كانو كومباني بيلدنج 1 - شارع مدين - حي الفرصان",
+    "phone": ["+966 56 666 9815", "+966 55 055 7454", "+966 56 233 9116"],
+    "addressAr": "جدة - مبنى شركة يوسف كانو 1 طريق المدينة المنورة الفرعي - حي الفيصلية",
     "addressEn": "Jeddah - Yusuf Kanoo Company Building 1, Madinah Road Branch, Al-Faisaliah District"
   },
   "aboutUs": {
